@@ -50,7 +50,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('frontend.dashboard') }}" class="nav-link">
+                <a href="{{ route('admin.schools.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         {{ __('Schools') }}

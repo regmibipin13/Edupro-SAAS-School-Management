@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SchoolsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Admin Routes
 Route::group(['as' => 'admin.', 'middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('dashboard');
+    Route::resource('schools', SchoolsController::class);
 });
 
+
+
+// Normal User Routes
 Route::group(['as' => 'frontend.', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'userIndex'])->name('dashboard');
 });

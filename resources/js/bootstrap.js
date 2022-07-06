@@ -4,6 +4,7 @@ try {
     window.$ = window.jQuery = require('jquery');
     window.Popper = require('@popperjs/core');
     require('bootstrap');
+    require('icheck-bootstrap');
 } catch (e) {}
 
 /**

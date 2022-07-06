@@ -11,3 +11,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+
+// Some jQuery Scripts here
+$(document).ready(function() {
+    var rowCount = $('table thead tr th').length;
+    $('#colspan-automate').attr("colspan", rowCount);
+
+});

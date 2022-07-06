@@ -14,6 +14,12 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     @yield('styles')
+
+    <style>
+        .filters-list .form-control {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -105,6 +111,7 @@
     <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
     @yield('scripts')
+
 </body>
 
 </html>

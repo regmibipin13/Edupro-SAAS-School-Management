@@ -5328,6 +5328,11 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 var app = new Vue({
   el: '#app'
+}); // Some jQuery Scripts here
+
+$(document).ready(function () {
+  var rowCount = $('table thead tr th').length;
+  $('#colspan-automate').attr("colspan", rowCount);
 });
 
 /***/ }),
@@ -5345,6 +5350,8 @@ try {
   window.Popper = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+
+  __webpack_require__(/*! icheck-bootstrap */ "./node_modules/icheck-bootstrap/icheck-bootstrap.css");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -10395,6 +10402,106 @@ defineJQueryPlugin(Toast);
 
 //# sourceMappingURL=bootstrap.esm.js.map
 
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/icheck-bootstrap/icheck-bootstrap.css":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/icheck-bootstrap/icheck-bootstrap.css ***!
+  \********************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "/*!\r\n * icheck-bootstrap v3.0.1 (https://github.com/bantikyan/icheck-bootstrap)\r\n * Copyright 2018 Hovhannes Bantikyan.\r\n * Licensed under MIT (https://github.com/bantikyan/icheck-bootstrap/blob/master/LICENSE)\r\n */\r\n\r\n [class*=\"icheck-\"] {\r\n    min-height: 22px;\r\n    margin-top: 6px !important;\r\n    margin-bottom: 6px !important;\r\n    padding-left: 0px;\r\n}\r\n\r\n.icheck-inline {\r\n    display: inline-block;\r\n}\r\n\r\n    .icheck-inline + .icheck-inline {\r\n        margin-left: .75rem;\r\n        margin-top: 6px;\r\n    }\r\n\r\n[class*=\"icheck-\"] > label {\r\n    padding-left: 29px !important;\r\n    min-height: 22px;\r\n    line-height: 22px;\r\n    display: inline-block;\r\n    position: relative;\r\n    vertical-align: top;\r\n    margin-bottom: 0;\r\n    font-weight: normal;\r\n    cursor: pointer;\r\n}\r\n\r\n[class*=\"icheck-\"] > input:first-child {\r\n    position: absolute !important;\r\n    opacity: 0;\r\n    margin: 0;\r\n}\r\n\r\n    [class*=\"icheck-\"] > input:first-child:disabled {\r\n        cursor: default;\r\n    }\r\n\r\n    [class*=\"icheck-\"] > input:first-child + label::before,\r\n    [class*=\"icheck-\"] > input:first-child + input[type=\"hidden\"] + label::before {\r\n        content: \"\";\r\n        display: inline-block;\r\n        position: absolute;\r\n        width: 22px;\r\n        height: 22px;\r\n        border: 1px solid #D3CFC8;\r\n        border-radius: 0px;\r\n        margin-left: -29px;\r\n    }\r\n\r\n    [class*=\"icheck-\"] > input:first-child:checked + label::after,\r\n    [class*=\"icheck-\"] > input:first-child:checked + input[type=\"hidden\"] + label::after {\r\n        content: \"\";\r\n        display: inline-block;\r\n        position: absolute;\r\n        top: 0;\r\n        left: 0;\r\n        width: 7px;\r\n        height: 10px;\r\n        border: solid 2px #fff;\r\n        border-left: none;\r\n        border-top: none;\r\n        transform: translate(7.75px, 4.5px) rotate(45deg);\r\n        -ms-transform: translate(7.75px, 4.5px) rotate(45deg);\r\n    }\r\n\r\n[class*=\"icheck-\"] > input[type=\"radio\"]:first-child + label::before,\r\n[class*=\"icheck-\"] > input[type=\"radio\"]:first-child + input[type=\"hidden\"] + label::before {\r\n    border-radius: 50%;\r\n}\r\n\r\n[class*=\"icheck-\"] > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n[class*=\"icheck-\"] > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-width: 2px;\r\n}\r\n\r\n[class*=\"icheck-\"] > input:first-child:disabled + label,\r\n[class*=\"icheck-\"] > input:first-child:disabled + input[type=\"hidden\"] + label,\r\n[class*=\"icheck-\"] > input:first-child:disabled + label::before,\r\n[class*=\"icheck-\"] > input:first-child:disabled + input[type=\"hidden\"] + label::before {\r\n    pointer-events: none;\r\n    cursor: default;\r\n    filter: alpha(opacity=65);\r\n    box-shadow: none;\r\n    opacity: .65;\r\n}\r\n\r\n.icheck-default > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-default > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #adadad;\r\n}\r\n\r\n.icheck-default > input:first-child:checked + label::before,\r\n.icheck-default > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #e6e6e6;\r\n    border-color: #adadad;\r\n}\r\n\r\n.icheck-default > input:first-child:checked + label::after,\r\n.icheck-default > input:first-child:checked + input[type=\"hidden\"] + label::after {\r\n    border-bottom-color: #333;\r\n    border-right-color: #333;\r\n}\r\n\r\n.icheck-primary > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-primary > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #2e6da4;\r\n}\r\n\r\n.icheck-primary > input:first-child:checked + label::before,\r\n.icheck-primary > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #337ab7;\r\n    border-color: #2e6da4;\r\n}\r\n\r\n.icheck-success > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-success > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #4cae4c;\r\n}\r\n\r\n.icheck-success > input:first-child:checked + label::before,\r\n.icheck-success > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #5cb85c;\r\n    border-color: #4cae4c;\r\n}\r\n\r\n.icheck-info > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-info > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #46b8da;\r\n}\r\n\r\n.icheck-info > input:first-child:checked + label::before,\r\n.icheck-info > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #5bc0de;\r\n    border-color: #46b8da;\r\n}\r\n\r\n.icheck-warning > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-warning > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #eea236;\r\n}\r\n\r\n.icheck-warning > input:first-child:checked + label::before,\r\n.icheck-warning > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #f0ad4e;\r\n    border-color: #eea236;\r\n}\r\n\r\n.icheck-danger > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-danger > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #d43f3a;\r\n}\r\n\r\n.icheck-danger > input:first-child:checked + label::before,\r\n.icheck-danger > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #d9534f;\r\n    border-color: #d43f3a;\r\n}\r\n\r\n.icheck-turquoise > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-turquoise > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #1abc9c;\r\n}\r\n\r\n.icheck-turquoise > input:first-child:checked + label::before,\r\n.icheck-turquoise > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #1abc9c;\r\n    border-color: #1abc9c;\r\n}\r\n\r\n.icheck-emerland > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-emerland > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #2ecc71;\r\n}\r\n\r\n.icheck-emerland > input:first-child:checked + label::before,\r\n.icheck-emerland > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #2ecc71;\r\n    border-color: #2ecc71;\r\n}\r\n\r\n.icheck-peterriver > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-peterriver > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #3498db;\r\n}\r\n\r\n.icheck-peterriver > input:first-child:checked + label::before,\r\n.icheck-peterriver > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #3498db;\r\n    border-color: #3498db;\r\n}\r\n\r\n.icheck-amethyst > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-amethyst > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #9b59b6;\r\n}\r\n\r\n.icheck-amethyst > input:first-child:checked + label::before,\r\n.icheck-amethyst > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #9b59b6;\r\n    border-color: #9b59b6;\r\n}\r\n\r\n.icheck-wetasphalt > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-wetasphalt > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #34495e;\r\n}\r\n\r\n.icheck-wetasphalt > input:first-child:checked + label::before,\r\n.icheck-wetasphalt > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #34495e;\r\n    border-color: #34495e;\r\n}\r\n\r\n.icheck-greensea > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-greensea > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #16a085;\r\n}\r\n\r\n.icheck-greensea > input:first-child:checked + label::before,\r\n.icheck-greensea > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #16a085;\r\n    border-color: #16a085;\r\n}\r\n\r\n.icheck-nephritis > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-nephritis > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #27ae60;\r\n}\r\n\r\n.icheck-nephritis > input:first-child:checked + label::before,\r\n.icheck-nephritis > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #27ae60;\r\n    border-color: #27ae60;\r\n}\r\n\r\n.icheck-belizehole > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-belizehole > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #2980b9;\r\n}\r\n\r\n.icheck-belizehole > input:first-child:checked + label::before,\r\n.icheck-belizehole > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #2980b9;\r\n    border-color: #2980b9;\r\n}\r\n\r\n.icheck-wisteria > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-wisteria > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #8e44ad;\r\n}\r\n\r\n.icheck-wisteria > input:first-child:checked + label::before,\r\n.icheck-wisteria > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #8e44ad;\r\n    border-color: #8e44ad;\r\n}\r\n\r\n.icheck-midnightblue > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-midnightblue > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #2c3e50;\r\n}\r\n\r\n.icheck-midnightblue > input:first-child:checked + label::before,\r\n.icheck-midnightblue > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #2c3e50;\r\n    border-color: #2c3e50;\r\n}\r\n\r\n.icheck-sunflower > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-sunflower > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #f1c40f;\r\n}\r\n\r\n.icheck-sunflower > input:first-child:checked + label::before,\r\n.icheck-sunflower > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #f1c40f;\r\n    border-color: #f1c40f;\r\n}\r\n\r\n.icheck-carrot > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-carrot > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #e67e22;\r\n}\r\n\r\n.icheck-carrot > input:first-child:checked + label::before,\r\n.icheck-carrot > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #e67e22;\r\n    border-color: #e67e22;\r\n}\r\n\r\n.icheck-alizarin > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-alizarin > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #e74c3c;\r\n}\r\n\r\n.icheck-alizarin > input:first-child:checked + label::before,\r\n.icheck-alizarin > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #e74c3c;\r\n    border-color: #e74c3c;\r\n}\r\n\r\n.icheck-clouds > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-clouds > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #ecf0f1;\r\n}\r\n\r\n.icheck-clouds > input:first-child:checked + label::before,\r\n.icheck-clouds > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #ecf0f1;\r\n    border-color: #ecf0f1;\r\n}\r\n\r\n.icheck-clouds > input:first-child:checked + label::after,\r\n.icheck-clouds > input:first-child:checked + input[type=\"hidden\"] + label::after {\r\n    border-bottom-color: #95a5a6;\r\n    border-right-color: #95a5a6;\r\n}\r\n\r\n.icheck-concrete > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-concrete > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #95a5a6;\r\n}\r\n\r\n.icheck-concrete > input:first-child:checked + label::before,\r\n.icheck-concrete > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #95a5a6;\r\n    border-color: #95a5a6;\r\n}\r\n\r\n.icheck-orange > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-orange > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #f39c12;\r\n}\r\n\r\n.icheck-orange > input:first-child:checked + label::before,\r\n.icheck-orange > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #f39c12;\r\n    border-color: #f39c12;\r\n}\r\n\r\n.icheck-pumpkin > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-pumpkin > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #d35400;\r\n}\r\n\r\n.icheck-pumpkin > input:first-child:checked + label::before,\r\n.icheck-pumpkin > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #d35400;\r\n    border-color: #d35400;\r\n}\r\n\r\n.icheck-pomegranate > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-pomegranate > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #c0392b;\r\n}\r\n\r\n.icheck-pomegranate > input:first-child:checked + label::before,\r\n.icheck-pomegranate > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #c0392b;\r\n    border-color: #c0392b;\r\n}\r\n\r\n.icheck-silver > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-silver > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #bdc3c7;\r\n}\r\n\r\n.icheck-silver > input:first-child:checked + label::before,\r\n.icheck-silver > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #bdc3c7;\r\n    border-color: #bdc3c7;\r\n}\r\n\r\n.icheck-asbestos > input:first-child:not(:checked):not(:disabled):hover + label::before,\r\n.icheck-asbestos > input:first-child:not(:checked):not(:disabled):hover + input[type=\"hidden\"] + label::before {\r\n    border-color: #7f8c8d;\r\n}\r\n\r\n.icheck-asbestos > input:first-child:checked + label::before,\r\n.icheck-asbestos > input:first-child:checked + input[type=\"hidden\"] + label::before {\r\n    background-color: #7f8c8d;\r\n    border-color: #7f8c8d;\r\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === "string") {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, ""]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
 
 /***/ }),
 
@@ -38709,6 +38816,315 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/icheck-bootstrap/icheck-bootstrap.css":
+/*!************************************************************!*\
+  !*** ./node_modules/icheck-bootstrap/icheck-bootstrap.css ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_loader_dist_cjs_js_clonedRuleSet_9_use_1_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_icheck_bootstrap_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./icheck-bootstrap.css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/icheck-bootstrap/icheck-bootstrap.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_icheck_bootstrap_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_icheck_bootstrap_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : 0;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && typeof btoa !== 'undefined') {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -50693,6 +51109,18 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/bipinregmi/sites/
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -50794,6 +51222,11 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/bipinregmi/sites/
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
