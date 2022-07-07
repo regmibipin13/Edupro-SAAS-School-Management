@@ -20,6 +20,9 @@ $(document).ready(function() {
     $('#colspan-automate').attr("colspan", rowCount);
 
     // Initializing the select2
-    $('select').select2();
+    $('select').select2({
+        placeholder: 'Select an option',
+        theme:'classic'
+    });
 
 });

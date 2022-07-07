@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SchoolsController;
+use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,9 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'is_admin'], 'prefix' =
 
     // Permissions Page
     Route::resource('roles', RolesController::class);
+
+    // Users
+    Route::resource('users', UsersController::class);
 
     // Schools
     Route::resource('schools', SchoolsController::class);
