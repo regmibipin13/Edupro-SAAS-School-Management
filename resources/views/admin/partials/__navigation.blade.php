@@ -11,7 +11,7 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="{{ route('frontend.dashboard') }}" class="nav-link">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         {{ __('Dashboard') }}
@@ -19,8 +19,8 @@
                 </a>
             </li>
 
-            <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         User Management
@@ -29,13 +29,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link active">
+                        <a href="{{ route('admin.permissions.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Permissions</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
+                        <a href="{{ route('admin.roles.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Roles</p>
                         </a>
@@ -51,7 +51,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('admin.schools.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-school"></i>
                     <p>
                         {{ __('Schools') }}
                     </p>

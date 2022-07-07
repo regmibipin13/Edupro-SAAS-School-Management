@@ -24,6 +24,9 @@
                                     value="{{ request()->name }}">
                                 <input type="email" class="form-control" name="email" placeholder="School Email"
                                     value="{{ request()->email }}">
+                                <input type="number" class="form-control" name="contact" placeholder="School Contact"
+                                    value="{{ request()->contact }}">
+
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </form>
                         </div>
@@ -49,16 +52,16 @@
                                             <td><span
                                                     class="badge badge-pill {{ $school->is_active ? 'badge-success' : 'badge-danger' }}">{{ $school->is_active ? 'Active' : 'Inactive' }}</span>
                                             </td>
-                                            <td>
+                                            <td class="d-flex align-items-center">
                                                 <a href="{{ route('admin.schools.edit', $school->id) }}"
-                                                    class="btn btn-sm btn-primary">Edit</a>
-                                                <a href="" class="btn btn-sm btn-info">View</a>
-                                                <a href="#" class="btn btn-sm btn-danger"
-                                                    onclick="document.getElementById('delete-form-{{ $school->id }}').submit();">Delete</a>
+                                                    class="btn btn-sm btn-primary mr-2">Edit</a>
                                                 <form action="{{ route('admin.schools.destroy', $school->id) }}"
+                                                    onsubmit="confirm('Are you sure you want to delete ?')"
                                                     id="delete-form-{{ $school->id }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Are you sure ?')">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

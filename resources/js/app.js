@@ -19,4 +19,7 @@ $(document).ready(function() {
     var rowCount = $('table thead tr th').length;
     $('#colspan-automate').attr("colspan", rowCount);
 
+    // Initializing the select2
+    $('select').select2();
+
 });

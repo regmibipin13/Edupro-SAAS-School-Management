@@ -13,14 +13,14 @@ class School extends Model
 
     protected $guarded = ['id'];
 
-
     public static $filters = [
         'name',
         'email',
+        'contact',
         'id'
     ];
 
     public static $relationFilters = [
-        // 'relation_name' => 'relation_column_name'
+        'relation_name' => 'relation_column_name'
     ];
 }

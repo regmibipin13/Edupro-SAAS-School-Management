@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\PermissionsController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SchoolsController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +24,16 @@ Auth::routes();
 
 // Admin Routes
 Route::group(['as' => 'admin.', 'middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], function () {
+    // Dashboard Page
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('dashboard');
+
+    // Permissions Page
+    Route::resource('permissions', PermissionsController::class);
+
+    // Permissions Page
+    Route::resource('roles', RolesController::class);
+
+    // Schools
     Route::resource('schools', SchoolsController::class);
 });
 

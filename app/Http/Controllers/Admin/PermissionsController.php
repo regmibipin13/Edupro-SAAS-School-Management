@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Schools\StoreSchoolRequest;
-use App\Http\Requests\Schools\UpdateSchoolRequest;
-use App\Models\School;
+use App\Http\Requests\Permissions\StorePermissionRequest;
+use App\Http\Requests\Permissions\UpdatePermissionRequest;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
-class SchoolsController extends Controller
+class PermissionsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $schools = School::filters($request)->orderBy('id', 'desc')->paginate(10);
-        return view('admin.schools.index', compact('schools'));
+        $permissions = Permission::paginate(20);
+        return view('admin.permissions.index', compact('permissions'));
     }
 
     /**
@@ -28,7 +28,7 @@ class SchoolsController extends Controller
      */
     public function create()
     {
-        return view('admin.schools.create');
+        return view('admin.permissions.create');
     }
 
     /**
@@ -37,10 +37,11 @@ class SchoolsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSchoolRequest $request)
+    public function store(StorePermissionRequest $request)
     {
-        School::create($request->all());
-        return redirect()->to('/admin/schools')->with('success', 'School Added Successfully');
+        Permission::create($request->all());
+
+        return redirect()->to('/admin/permissions')->with('success', 'Permissions Created Successfully');
     }
 
     /**
@@ -60,9 +61,9 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(School $school)
+    public function edit(Permission $permission)
     {
-        return view('admin.schools.edit', compact('school'));
+        return view('admin.permissions.edit', compact('permission'));
     }
 
     /**
@@ -72,15 +73,10 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSchoolRequest $request, School $school)
+    public function update(UpdatePermissionRequest $request, Permission $permission)
     {
-        if ($request->has('is_active') && $request->is_active) {
-            $request->merge(['is_active' => 1]);
-        } else {
-            $request->merge(['is_active' => 0]);
-        }
-        $school->update($request->all());
-        return redirect()->to('/admin/schools')->with('success', 'School Updated Successfully');
+        $permission->update($request->all());
+        return redirect()->to('/admin/permissions')->with('success', 'Permissions Updated Successfully');
     }
 
     /**
@@ -89,9 +85,9 @@ class SchoolsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy(Permission $permission)
     {
-        $school->delete();
-        return redirect()->back()->with('success', 'School Deleted Successfully');
+        $permission->delete();
+        return redirect()->back()->with('success', 'Permissions Deleted Successfully');
     }
 }
