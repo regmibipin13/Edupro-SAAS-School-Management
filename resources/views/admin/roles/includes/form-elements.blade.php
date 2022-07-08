@@ -11,7 +11,7 @@
     <div class="form-group">
         <label for="permissions">{{ __('Permissions *') }}</label>
         <select name="permissions[]" id="permissions"
-            class="form-control {{ $errors->has('permissions') ? 'is-invalid' : '' }}" multiple>
+            class="form-control select2 {{ $errors->has('permissions') ? 'is-invalid' : '' }}" multiple>
 
             @foreach ($permissions as $permission)
                 <option value="{{ $permission->id }}"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Http\Requests\Users\UpdateUserRequest;
+use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -31,7 +32,8 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.users.create', compact('roles'));
+        $schools = School::all();
+        return view('admin.users.create', compact('roles', 'schools'));
     }
 
     /**
@@ -69,7 +71,8 @@ class UsersController extends Controller
     {
         $user->load(['roles']);
         $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        $schools = School::all();
+        return view('admin.users.edit', compact('user', 'roles', 'schools'));
     }
 
     /**

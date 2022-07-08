@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Filterable;
+use App\Traits\SchoolMultitenancy;
 use Hash;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
     use Filterable;
+    use SchoolMultitenancy;
 
     public static $filters = [
         'id', 'name', 'email'
@@ -33,6 +35,13 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'dial_code',
+        'phone',
+        'dob',
+        'city',
+        'address',
+        'gender',
+        'school_id'
     ];
 
     /**
@@ -54,8 +63,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($value)
+    public function setPasswordAttribute($input)
     {
-        $this->attributes['password'] = Hash::make($value);
+        if ($input) {
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+        }
+    }
+
+    public function school()
+    {
+        return $this->belongsTo(School::class, 'school_id');
+    }
+
+    public function class_sections()
+    {
+        return $this->hasMany(Section::class);
     }
 }

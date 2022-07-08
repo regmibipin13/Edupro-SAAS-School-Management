@@ -36,8 +36,8 @@
     </div>
     <div class="form-group">
         <label for="roles">{{ __('Roles *') }}</label>
-        <select name="roles[]" id="roles" class="form-control {{ $errors->has('roles') ? 'is-invalid' : '' }}"
-            multiple>
+        <select name="roles[]" id="roles"
+            class="form-control select2 {{ $errors->has('roles') ? 'is-invalid' : '' }}" multiple>
 
             @foreach ($roles as $role)
                 <option value="{{ $role->id }}"
@@ -47,6 +47,51 @@
         </select>
         @if ($errors->has('roles'))
             <span class="text-danger">{{ $errors->first('roles') }}</span>
+        @endif
+    </div>
+    <div class="form-group">
+        <label for="phone">{{ __('User Phone') }}</label>
+        <input type="text" va class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone"
+            placeholder="{{ __('User phone') }}" id="phone"
+            value="{{ isset($user) ? old('phone', $user->phone) : old('phone', '') }}">
+        @if ($errors->has('phone'))
+            <span class="text-danger">{{ $errors->first('phone') }}</span>
+        @endif
+    </div>
+
+    <div class="form-group">
+        <label for="dob">{{ __('User Date of Birth') }}</label>
+        <input type="date" va class="form-control {{ $errors->has('dob') ? 'is-invalid' : '' }}" name="dob"
+            placeholder="{{ __('User dob') }}" id="dob"
+            value="{{ isset($user) ? old('dob', $user->dob) : old('dob', '') }}">
+        @if ($errors->has('dob'))
+            <span class="text-danger">{{ $errors->first('dob') }}</span>
+        @endif
+    </div>
+
+    <div class="form-group">
+        <label for="gender">{{ __('Gender') }}</label>
+        <select name="gender" id="gender" class="form-control {{ $errors->has('gender') ? 'is-invalid' : '' }}">
+            <option value="Male" @if (isset($user) ? ($user->gender == 'Male' ? 'selected' : '') : '')  @endif>Male</option>
+            <option value="Female"@if (isset($user) ? ($user->gender == 'Female' ? 'selected' : '') : '')  @endif>Female</option>
+        </select>
+        @if ($errors->has('gender'))
+            <span class="text-danger">{{ $errors->first('gender') }}</span>
+        @endif
+    </div>
+
+    <div class="form-group">
+        <label for="school">{{ __('School') }}</label>
+        <select name="school_id" id="school_id"
+            class="form-control select2 {{ $errors->has('school_id') ? 'is-invalid' : '' }}">
+            @foreach ($schools as $school)
+                <option value="{{ $school->id }}"
+                    {{ isset($user) ? ($user->school_id == $school->id ? 'selected' : '') : '' }}>
+                    {{ $school->nickname }} - {{ $school->name }}</option>
+            @endforeach
+        </select>
+        @if ($errors->has('school_id'))
+            <span class="text-danger">{{ $errors->first('school_id') }}</span>
         @endif
     </div>
 </div>

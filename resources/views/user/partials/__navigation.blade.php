@@ -11,10 +11,35 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="{{ route('frontend.dashboard') }}" class="nav-link">
+                <a href="{{ route('user.dashboard') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         {{ __('Dashboard') }}
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('user.schools.edit', Auth::user()->school_id) }}" class="nav-link">
+                    <i class="nav-icon fas fa-school"></i>
+                    <p>
+                        {{ __('School Details') }}
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('user.classrooms.index') }}" class="nav-link">
+                    <i class="nav-icon fa-regular fa-screen-users"></i>
+                    <p>
+                        {{ __('Classrooms') }}
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('user.sections.index') }}" class="nav-link">
+                    <i class="nav-icon fa-regular fa-screen-users"></i>
+                    <p>
+                        {{ __('Sections') }}
                     </p>
                 </a>
             </li>

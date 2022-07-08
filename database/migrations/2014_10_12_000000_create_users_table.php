@@ -20,6 +20,17 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_admin')->default(false);
+
+            // Nullable Fields
+            $table->string('dial_code')->default('977');
+            $table->string('phone')->nullable();
+            $table->string('dob')->nullable();
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->string('gender')->nullable();
+
+            $table->unsignedBigInteger('school_id')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

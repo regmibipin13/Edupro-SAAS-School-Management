@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\User\ClassroomsController;
+use App\Http\Controllers\User\SectionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,8 +46,19 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'is_admin'], 'prefix' =
 
 
 // Normal User Routes
-Route::group(['as' => 'frontend.', 'middleware' => ['auth']], function () {
+Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
+    // Dashboard Page
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'userIndex'])->name('dashboard');
+
+    // Edit Own School
+    Route::get('school/{school}', [App\Http\Controllers\User\SchoolController::class, 'index'])->name('schools.edit');
+    Route::patch('school/{school}', [App\Http\Controllers\User\SchoolController::class, 'update'])->name('schools.update');
+
+    // Classrooms
+    Route::resource('classrooms', ClassroomsController::class);
+
+    // Class Sections
+    Route::resource('sections', SectionsController::class);
 });
 
 Route::middleware('auth')->group(function () {
