@@ -12,11 +12,7 @@
 
     @include('layouts.__styles')
 
-    <style>
-        .filters-list .form-control {
-            margin-right: 10px;
-        }
-    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">

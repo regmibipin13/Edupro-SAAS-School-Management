@@ -29,5 +29,9 @@
          overflow: hidden;
          word-break: keep-all;
      }
+
+     .filters-list .form-control {
+         margin-right: 10px;
+     }
  </style>
  @yield('styles')

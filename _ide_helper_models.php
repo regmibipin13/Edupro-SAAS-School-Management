@@ -21,6 +21,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\School $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subject[] $subjects
+ * @property-read int|null $subjects_count
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom filters($request)
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom newQuery()
@@ -110,6 +112,36 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Subject
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $code
+ * @property int $classroom_id
+ * @property int $school_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classroom $classroom
+ * @property-read \App\Models\School $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $teachers
+ * @property-read int|null $teachers_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject filters($request)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereClassroomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereUpdatedAt($value)
+ */
+	class Subject extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -137,6 +169,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
  * @property-read int|null $roles_count
  * @property-read \App\Models\School|null $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subject[] $subjects
+ * @property-read int|null $subjects_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)

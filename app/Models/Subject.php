@@ -7,23 +7,31 @@ use App\Traits\SchoolMultitenancy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Classroom extends Model
+class Subject extends Model
 {
     use HasFactory;
     use SchoolMultitenancy;
     use Filterable;
 
-    public static $filters = [
-        'name',
-    ];
-    public static $relationFilters = [
-        'school' => 'id',
-    ];
-
     protected $guarded = ['id'];
 
-    public function subjects()
+    public static $filters = [
+        'name',
+        'code'
+    ];
+
+    public static $relationFilters = [
+        'classroom' => 'id',
+        'teachers' => 'id',
+    ];
+
+    public function classroom()
     {
-        return $this->hasMany(Subject::class);
+        return $this->belongsTo(Classroom::class, 'classroom_id');
+    }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(User::class, 'subject_users', 'subject_id', 'user_id');
     }
 }

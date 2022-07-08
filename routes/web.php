@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\ClassroomsController;
 use App\Http\Controllers\User\SectionsController;
+use App\Http\Controllers\User\SubjectsController;
+use App\Http\Controllers\User\UsersController as NormalUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +61,12 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     // Class Sections
     Route::resource('sections', SectionsController::class);
+
+    // Users (Teachers, Parents, and other users)
+    Route::resource('users', NormalUserController::class);
+
+    // Subjects
+    Route::resource('subjects', SubjectsController::class);
 });
 
 Route::middleware('auth')->group(function () {

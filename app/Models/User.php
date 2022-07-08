@@ -79,4 +79,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Section::class);
     }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'subject_users', 'user_id', 'subject_id');
+    }
 }
