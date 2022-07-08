@@ -17,7 +17,7 @@
                         <div class="card-header">
                             <h5>Search Schools</h5>
                             <form action="{{ route('admin.schools.index') }}" method="get"
-                                class=" d-flex align-items-center filters-list">
+                                class="d-flex align-items-center filters-list">
                                 <input type="text" class="form-control" name="id" placeholder="School Id"
                                     value="{{ request()->id }}">
                                 <input type="text" class="form-control" name="name" placeholder="School Name"

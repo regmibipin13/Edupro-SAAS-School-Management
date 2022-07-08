@@ -64,9 +64,21 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">
-                                Sections
-                            </h4>
+                            <form action="{{ route('user.sections.index') }}" method="get"
+                                class="d-flex align-items-centern filters-list">
+                                <select name="classroom" id="classroom" class="form-control mr-2">
+                                    <option value="">All</option>
+                                    @foreach ($classrooms as $class)
+                                        <option value="{{ $class->id }}"
+                                            {{ request()->classroom == $class->id ? 'selected' : '' }}>
+                                            {{ $class->name }}</option>
+                                    @endforeach
+                                </select>
+                                <input type="text" class="form-control mr-2" name="name"
+                                    value="{{ request()->name }}" placeholder="{{ __('Section Name') }}">
+
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </form>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered" id="myTable">
