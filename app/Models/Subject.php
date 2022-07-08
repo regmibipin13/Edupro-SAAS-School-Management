@@ -17,11 +17,11 @@ class Subject extends Model
 
     public static $filters = [
         'name',
-        'code'
+        'code',
+        'classroom_id'
     ];
 
     public static $relationFilters = [
-        'classroom' => 'id',
         'teachers' => 'id',
     ];
 

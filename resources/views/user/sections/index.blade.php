@@ -13,22 +13,22 @@
                             <h4 class="card-title">Create New Section</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('user.sections.store') }}" method="POST">
+                            <form action="{{ route('user.sections.store') }}" method="POST" class="row">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="name">{{ __('Section Name *') }}</label>
                                     <input type="text" id="name"
                                         class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name"
                                         value="{{ isset($section) ? old('name', $section->name) : old('name', '') }}">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="total_capasity">{{ __('Capasity') }}</label>
                                     <input type="number" id="total_capasity"
                                         class="form-control {{ $errors->has('total_capasity') ? 'is-invalid' : '' }}"
                                         name="total_capasity"
                                         value="{{ isset($section) ? old('total_capasity', $section->total_capasity) : old('total_capasity', '') }}">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="classroom_id">{{ __('Class') }}</label>
                                     <select name="classroom_id" id="classroom_id"
                                         class="form-control select2 {{ $errors->has('classroom_id') ? 'is-invalid' : '' }}">
@@ -39,7 +39,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label for="user_id">{{ __('Class Teacher') }}</label>
                                     <select name="user_id" id="class" id="user_id"
                                         class="form-control select2 {{ $errors->has('user_id') ? 'is-invalid' : '' }}">
@@ -51,7 +51,7 @@
                                     </select>
                                 </div>
 
-                                <button class="btn btn-success">Save</button>
+                                <button class="btn btn-success mr-2">Save</button>
                                 <a class="btn btn-danger" href="{{ route('user.sections.index') }}">Reset</a>
 
                             </form>

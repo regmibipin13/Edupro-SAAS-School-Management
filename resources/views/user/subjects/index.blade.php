@@ -67,16 +67,16 @@
                             <br />
                             <form action="{{ route('user.subjects.index') }}" method="get"
                                 class="d-flex align-items-centern filters-list">
-                                <select name="classroom" id="classroom" class="form-control mr-2">
-                                    <option value="">All</option>
+                                <select name="classroom_id" id="classroom" class="form-control mr-2">
+                                    <option value="">Select Class</option>
                                     @foreach ($classrooms as $class)
                                         <option value="{{ $class->id }}"
-                                            {{ request()->classroom == $class->id ? 'selected' : '' }}>
+                                            {{ request()->classroom_id == $class->id ? 'selected' : '' }}>
                                             {{ $class->name }}</option>
                                     @endforeach
                                 </select>
-                                <input type="text" class="form-control mr-2" name="name"
-                                    value="{{ request()->name }}" placeholder="{{ __('subject Name') }}">
+                                <input type="text" class="form-control mr-2 ml-2" name="name"
+                                    value="{{ request()->name }}" placeholder="{{ __('Subject Name') }}">
 
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </form>
