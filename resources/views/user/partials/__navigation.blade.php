@@ -65,15 +65,15 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
-                        Two-level menu
+                        Exams and Results
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('user.exams.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Child menu</p>
+                            <p>Exams</p>
                         </a>
                     </li>
                 </ul>

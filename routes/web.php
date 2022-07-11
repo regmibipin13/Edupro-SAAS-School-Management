@@ -5,9 +5,11 @@ use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\ClassroomsController;
+use App\Http\Controllers\User\ExamController;
 use App\Http\Controllers\User\SectionsController;
 use App\Http\Controllers\User\SubjectsController;
 use App\Http\Controllers\User\UsersController as NormalUserController;
+use App\Models\Exam;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,6 +69,9 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     // Subjects
     Route::resource('subjects', SubjectsController::class);
+
+    // Exams
+    Route::resource('exams', ExamController::class);
 });
 
 Route::middleware('auth')->group(function () {

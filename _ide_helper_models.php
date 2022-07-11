@@ -39,6 +39,35 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Exam
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $term
+ * @property string $start_date
+ * @property string $end_date
+ * @property int $school_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\School $school
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam filters($request)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam whereTerm($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exam whereUpdatedAt($value)
+ */
+	class Exam extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\School
  *
  * @property int $id
