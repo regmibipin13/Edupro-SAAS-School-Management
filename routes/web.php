@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\ClassroomsController;
 use App\Http\Controllers\User\ExamController;
 use App\Http\Controllers\User\SectionsController;
+use App\Http\Controllers\User\StudentsController;
 use App\Http\Controllers\User\SubjectsController;
 use App\Http\Controllers\User\UsersController as NormalUserController;
 use App\Models\Exam;
@@ -72,6 +73,9 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     // Exams
     Route::resource('exams', ExamController::class);
+
+    // Students
+    Route::resource('students', StudentsController::class);
 });
 
 Route::middleware('auth')->group(function () {

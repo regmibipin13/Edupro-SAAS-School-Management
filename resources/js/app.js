@@ -3,14 +3,32 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+import Multiselect from 'vue-multiselect'
+import "vue-multiselect/dist/vue-multiselect.min.css";
+
+import VueLoading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
+import VueToast from 'vue-toast-notification';
+//import 'vue-toast-notification/dist/theme-default.css';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+Vue.use(VueToast);
+
+// register globally
+Vue.component('multiselect', Multiselect)
+Vue.use(VueLoading)
 
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('admit-student',require('./components/AdmitStudent.vue').default);
+
+
 
 
 const app = new Vue({
     el: '#app',
 });
+
 
 
 

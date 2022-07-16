@@ -21,6 +21,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\School $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Section[] $sections
+ * @property-read int|null $sections_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subject[] $subjects
  * @property-read int|null $subjects_count
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom filters($request)
@@ -137,6 +139,45 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Section whereUserId($value)
  */
 	class Section extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Student
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $school_id
+ * @property int $classroom_id
+ * @property int $section_id
+ * @property int $parent_id
+ * @property string $admitted_date
+ * @property string|null $uniqueStudentId
+ * @property string $blood_group
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classroom $classroom
+ * @property-read \App\Models\User $parent
+ * @property-read \App\Models\School $school
+ * @property-read \App\Models\Section $section
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Student filters($request)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Student newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Student query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereAdmittedDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereBloodGroup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereClassroomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereSectionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereUniqueStudentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereUserId($value)
+ */
+	class Student extends \Eloquent {}
 }
 
 namespace App\Models{
