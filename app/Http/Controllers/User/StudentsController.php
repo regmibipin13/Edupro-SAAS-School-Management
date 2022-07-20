@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Students\StoreStudentRequest;
+use App\Http\Requests\Students\UpdateStudentRequest;
 use App\Models\Classroom;
 use App\Models\Section;
 use App\Models\Student;
@@ -75,9 +76,15 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student)
     {
-        //
+        $classes = Classroom::with('sections')->get();
+        $parents = User::whereHas('roles', function ($role) {
+            $role->where('name', 'Parents');
+        })->get();
+
+        $student->load(['classroom','classroom.sections','user','section','parent']);
+        return view('user.students.edit', compact('classes', 'parents','student'));
     }
 
     /**
@@ -87,9 +94,14 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateStudentRequest $request,Student $student)
     {
-        //
+        $user = User::find($student->user_id);
+        $user->update($request->except(['_token']));
+        $request->merge(['user_id' => $user->id]);
+        $student->update($request->except(['_token']));
+        return response()->json(['status' => 'success', 'redirect' => redirect()->back()]);
+        
     }
 
     /**
@@ -98,8 +110,9 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return redirect()->back()->with('success','Student Deleted Successfully');
     }
 }

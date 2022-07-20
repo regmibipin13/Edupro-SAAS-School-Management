@@ -83,12 +83,11 @@
                                                 <a href="{{ route('user.students.edit', $student->id) }}"
                                                     class="btn btn-sm btn-primary mr-2">Edit</a>
                                                 <form action="{{ route('user.students.destroy', $student->id) }}"
-                                                    onsubmit="confirm('Are you sure you want to delete ?')"
+                                                    onsubmit="return confirm('Are you sure you want to delete ?')"
                                                     id="delete-form-{{ $student->id }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Are you sure ?')">Delete</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

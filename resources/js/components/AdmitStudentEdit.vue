@@ -38,11 +38,11 @@ export default {
                 container: this.$refs.formContainer,
                 canCancel: false,
             });
-            axios.post(this.route,this.form).then((response) => {
+            axios.patch(this.route,this.form).then((response) => {
                 if(response.data.hasOwnProperty('status') && response.data.status == 'success') {
                     loader.hide();
-                    Vue.$toast.success('Student Admitted Successfully');
-                    this.resetValues();
+                    Vue.$toast.success('Student Updated Successfully');
+                    // this.resetValues();
                     
                 }
             }).catch((error) => {
@@ -50,28 +50,6 @@ export default {
                 loader.hide();
             });
         },
-        resetValues() {
-            this.form = {
-                name:'',
-                email:'',
-                phone:'',
-                gender:'',
-                city:'',
-                address:'',
-                dob:'',
-                admitted_date:'',
-                classroom_id:'',
-                section_id:'',
-                parent_id:'',
-                blood_group:''
-            };
-            this.section = '';
-            this.classroom = '';
-            this.parent = '';
-            this.sections = [];
-            this.errors = '';
-            isLoading = false;
-        }
 
     },
     watch:{

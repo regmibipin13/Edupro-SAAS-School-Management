@@ -5303,7 +5303,7 @@ __webpack_require__.r(__webpack_exports__);
         container: this.$refs.formContainer,
         canCancel: false
       });
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/students', this.form).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(this.route, this.form).then(function (response) {
         if (response.data.hasOwnProperty('status') && response.data.status == 'success') {
           loader.hide();
           Vue.$toast.success('Student Admitted Successfully');
@@ -5333,7 +5333,7 @@ __webpack_require__.r(__webpack_exports__);
       this.section = '';
       this.classroom = '';
       this.parent = '';
-      this.sections = '';
+      this.sections = [];
       this.errors = '';
       isLoading = false;
     }
@@ -5356,7 +5356,145 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    console.log("Mounted");
+
+    if (typeof this.student !== 'undefined' && this.student !== null) {
+      this.form.name = this.student.user.name;
+      this.form.email = this.student.user.email;
+      this.form.phone = this.student.user.phone;
+      this.form.gender = this.student.user.gender;
+      this.form.city = this.student.user.city;
+      this.form.address = this.student.user.address;
+      this.form.dob = this.student.user.dob;
+      this.form.admitted_date = this.student.admitted_date;
+      this.form.blood_group = this.student.blood_group;
+      this.classroom = this.student.classroom;
+      this.section = this.student.section;
+      this.parent = this.student.parent;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdmitStudentEdit.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdmitStudentEdit.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['classes', 'route', 'student'],
+  data: function data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        phone: '',
+        gender: '',
+        city: '',
+        address: '',
+        dob: '',
+        admitted_date: '',
+        classroom_id: '',
+        section_id: '',
+        parent_id: '',
+        blood_group: ''
+      },
+      section: '',
+      classroom: '',
+      parent: '',
+      sections: [],
+      errors: '',
+      isLoading: false
+    };
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      var loader = this.$loading.show({
+        container: this.$refs.formContainer,
+        canCancel: false
+      });
+      axios__WEBPACK_IMPORTED_MODULE_0___default().patch(this.route, this.form).then(function (response) {
+        if (response.data.hasOwnProperty('status') && response.data.status == 'success') {
+          loader.hide();
+          Vue.$toast.success('Student Updated Successfully'); // this.resetValues();
+        }
+      })["catch"](function (error) {
+        _this.errors = error.response.data.errors;
+        loader.hide();
+      });
+    },
+    resetValues: function resetValues() {
+      this.form = {
+        name: '',
+        email: '',
+        phone: '',
+        gender: '',
+        city: '',
+        address: '',
+        dob: '',
+        admitted_date: '',
+        classroom_id: '',
+        section_id: '',
+        parent_id: '',
+        blood_group: ''
+      };
+      this.section = '';
+      this.classroom = '';
+      this.parent = '';
+      this.sections = [];
+      this.errors = '';
+      isLoading = false;
+    }
+  },
+  watch: {
+    classroom: function classroom(_classroom) {
+      if (_classroom !== '') {
+        this.form.classroom_id = this.classroom.id;
+        this.sections = this.classroom.sections;
+      }
+    },
+    section: function section(_section) {
+      if (_section !== '') {
+        this.form.section_id = this.section.id;
+      }
+    },
+    parent: function parent(_parent) {
+      if (_parent !== '') {
+        this.form.parent_id = this.parent.id;
+      }
+    }
+  },
+  mounted: function mounted() {
+    console.log("Mounted");
+
+    if (typeof this.student !== 'undefined' && this.student !== null) {
+      this.form.name = this.student.user.name;
+      this.form.email = this.student.user.email;
+      this.form.phone = this.student.user.phone;
+      this.form.gender = this.student.user.gender;
+      this.form.city = this.student.user.city;
+      this.form.address = this.student.user.address;
+      this.form.dob = this.student.user.dob;
+      this.form.admitted_date = this.student.admitted_date;
+      this.form.blood_group = this.student.blood_group;
+      this.classroom = this.student.classroom;
+      this.section = this.student.section;
+      this.parent = this.student.parent;
+    }
+  }
 });
 
 /***/ }),
@@ -5365,6 +5503,31 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdmitStudent.vue?vue&type=template&id=68300e11& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div");
+};
+
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdmitStudentEdit.vue?vue&type=template&id=1fe366bb&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdmitStudentEdit.vue?vue&type=template&id=1fe366bb& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5418,6 +5581,7 @@ Vue.use((vue_toast_notification__WEBPACK_IMPORTED_MODULE_4___default())); // reg
 Vue.component('multiselect', (vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default()));
 Vue.use((vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default()));
 Vue.component('admit-student', (__webpack_require__(/*! ./components/AdmitStudent.vue */ "./resources/js/components/AdmitStudent.vue")["default"]));
+Vue.component('admit-student-edit', (__webpack_require__(/*! ./components/AdmitStudentEdit.vue */ "./resources/js/components/AdmitStudentEdit.vue")["default"]));
 var app = new Vue({
   el: '#app'
 }); // Some jQuery Scripts here
@@ -39426,6 +39590,45 @@ component.options.__file = "resources/js/components/AdmitStudent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/AdmitStudentEdit.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/AdmitStudentEdit.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdmitStudentEdit_vue_vue_type_template_id_1fe366bb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdmitStudentEdit.vue?vue&type=template&id=1fe366bb& */ "./resources/js/components/AdmitStudentEdit.vue?vue&type=template&id=1fe366bb&");
+/* harmony import */ var _AdmitStudentEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdmitStudentEdit.vue?vue&type=script&lang=js& */ "./resources/js/components/AdmitStudentEdit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdmitStudentEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdmitStudentEdit_vue_vue_type_template_id_1fe366bb___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdmitStudentEdit_vue_vue_type_template_id_1fe366bb___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AdmitStudentEdit.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/AdmitStudent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************!*\
   !*** ./resources/js/components/AdmitStudent.vue?vue&type=script&lang=js& ***!
@@ -39442,6 +39645,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/AdmitStudentEdit.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/AdmitStudentEdit.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdmitStudentEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdmitStudentEdit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdmitStudentEdit.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdmitStudentEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/AdmitStudent.vue?vue&type=template&id=68300e11&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/AdmitStudent.vue?vue&type=template&id=68300e11& ***!
@@ -39455,6 +39674,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AdmitStudent_vue_vue_type_template_id_68300e11___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AdmitStudent_vue_vue_type_template_id_68300e11___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdmitStudent.vue?vue&type=template&id=68300e11& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdmitStudent.vue?vue&type=template&id=68300e11&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/AdmitStudentEdit.vue?vue&type=template&id=1fe366bb&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/AdmitStudentEdit.vue?vue&type=template&id=1fe366bb& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AdmitStudentEdit_vue_vue_type_template_id_1fe366bb___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AdmitStudentEdit_vue_vue_type_template_id_1fe366bb___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AdmitStudentEdit_vue_vue_type_template_id_1fe366bb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdmitStudentEdit.vue?vue&type=template&id=1fe366bb& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AdmitStudentEdit.vue?vue&type=template&id=1fe366bb&");
 
 
 /***/ }),
