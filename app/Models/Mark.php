@@ -2,26 +2,14 @@
 
 namespace App\Models;
 
-use App\Traits\Filterable;
 use App\Traits\SchoolMultitenancy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Mark extends Model
 {
     use HasFactory;
     use SchoolMultitenancy;
-    use Filterable;
-
-    public static $filters = [
-        'classroom_id',
-        'section_id',
-    ];
-
-    public static $relationFilters = [
-        'user' => 'name',
-    ];
-
 
     protected $guarded = ['id'];
 
@@ -29,16 +17,24 @@ class Student extends Model
     {
         return $this->belongsTo(Classroom::class, 'classroom_id');
     }
+
     public function section()
     {
         return $this->belongsTo(Section::class, 'section_id');
     }
-    public function user()
+
+    public function student()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Student::class, 'student_id');
     }
-    public function parent()
+
+    public function exam()
     {
-        return $this->belongsTo(User::class, 'parent_id');
+        return $this->belongsTo(Exam::class, 'exam_id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
     }
 }

@@ -3,23 +3,18 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Classroom;
-use App\Models\School;
-use App\Models\Section;
 use Illuminate\Http\Request;
 
-class ClassroomsController extends Controller
+class MarksController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $classrooms = Classroom::filters($request)->with(['school'])->paginate(20);
-        $schools = School::all();
-        return view('user.classrooms.index', compact('classrooms', 'schools'));
+        //
     }
 
     /**
@@ -29,7 +24,7 @@ class ClassroomsController extends Controller
      */
     public function create()
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -40,12 +35,7 @@ class ClassroomsController extends Controller
      */
     public function store(Request $request)
     {
-        $sanitized = $request->validate([
-            'name' => ['required'],
-            'location' => ['nullable'],
-        ]);
-        Classroom::create($sanitized);
-        return redirect()->back()->with('success', 'Class Created Successfully');
+        //
     }
 
     /**
@@ -56,7 +46,7 @@ class ClassroomsController extends Controller
      */
     public function show($id)
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -67,7 +57,7 @@ class ClassroomsController extends Controller
      */
     public function edit($id)
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -77,14 +67,9 @@ class ClassroomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classroom $classroom)
+    public function update(Request $request, $id)
     {
-        $sanitized = $request->validate([
-            'name' => ['required'],
-            'location' => ['nullable'],
-        ]);
-        $classroom->update($sanitized);
-        return redirect()->back()->with('success', 'Classroom Updated Successfully');
+        //
     }
 
     /**
@@ -93,14 +78,8 @@ class ClassroomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classroom $classroom)
+    public function destroy($id)
     {
-        $classroom->delete();
-        return redirect()->back()->with('success', 'Class Deleted Successfully');
-    }
-
-    public function getSections($classroom_id)
-    {
-      return Section::where('classroom_id',$classroom_id)->get();
+        //
     }
 }

@@ -22,9 +22,14 @@ class StudentsController extends Controller
      */
     public function index(Request $request)
     {
-        $students = Student::filters($request)->with(['school','classroom','section'])->orderBy('id','desc')->paginate(20);
+        if ($request->ajax()) {
+            if ($request->has('classroom_id')) {
+                return Section::where('classroom_id', $request->classroom_id)->get();
+            }
+        }
+        $students = Student::filters($request)->with(['school', 'classroom', 'classroom.sections'])->orderBy('id', 'desc')->paginate(20);
         $classes = Classroom::with(['sections'])->get();
-        return view('user.students.index',compact('classes','students'));
+        return view('user.students.index', compact('classes', 'students'));
     }
 
     /**
@@ -51,7 +56,7 @@ class StudentsController extends Controller
     {
         $generatedPassword = Str::random(8);
         $request->merge(['password' => $generatedPassword]);
-        $role = Role::where('name','Students')->first();
+        $role = Role::where('name', 'Students')->first();
         $user = User::create($request->except(['_token']));
         $user->roles()->sync($role->id);
         $request->merge(['user_id' => $user->id]);
@@ -83,8 +88,8 @@ class StudentsController extends Controller
             $role->where('name', 'Parents');
         })->get();
 
-        $student->load(['classroom','classroom.sections','user','section','parent']);
-        return view('user.students.edit', compact('classes', 'parents','student'));
+        $student->load(['classroom', 'classroom.sections', 'user', 'section', 'parent']);
+        return view('user.students.edit', compact('classes', 'parents', 'student'));
     }
 
     /**
@@ -94,14 +99,13 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateStudentRequest $request,Student $student)
+    public function update(UpdateStudentRequest $request, Student $student)
     {
         $user = User::find($student->user_id);
         $user->update($request->except(['_token']));
         $request->merge(['user_id' => $user->id]);
         $student->update($request->except(['_token']));
         return response()->json(['status' => 'success', 'redirect' => redirect()->back()]);
-        
     }
 
     /**
@@ -113,6 +117,6 @@ class StudentsController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
-        return redirect()->back()->with('success','Student Deleted Successfully');
+        return redirect()->back()->with('success', 'Student Deleted Successfully');
     }
 }

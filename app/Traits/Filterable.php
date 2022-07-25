@@ -10,7 +10,11 @@ trait Filterable
         // Normal Filter without relations
         foreach (self::$filters as $allowedFilter) {
             if ($request->has($allowedFilter) && $this->isValidValue($request->$allowedFilter)) {
-                $query->where($allowedFilter, 'like', '%' . $request->$allowedFilter . '%');
+                if (is_array($request->$allowedFilter)) {
+                    $query->whereIn($allowedFilter, $request->$allowedFilter);
+                } else {
+                    $query->where($allowedFilter, 'like', '%' . $request->$allowedFilter . '%');
+                }
             }
         }
 

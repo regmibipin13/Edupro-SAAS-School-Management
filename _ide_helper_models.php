@@ -70,6 +70,83 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Grade
+ *
+ * @property int $id
+ * @property int $school_id
+ * @property string $name
+ * @property float $marks_from
+ * @property float $marks_to
+ * @property string $remarks
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\School $school
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade whereMarksFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade whereMarksTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade whereRemarks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Grade whereUpdatedAt($value)
+ */
+	class Grade extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Mark
+ *
+ * @property int $id
+ * @property int $school_id
+ * @property int $classroom_id
+ * @property int $section_id
+ * @property int $student_id
+ * @property int $exam_id
+ * @property int $subject_id
+ * @property float $total_marks
+ * @property float|null $gpa_gained
+ * @property float $pass_marks
+ * @property float $pass_gpa
+ * @property float $full_marks
+ * @property float $full_gpa
+ * @property string|null $remark
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classroom $classroom
+ * @property-read \App\Models\Exam $exam
+ * @property-read \App\Models\School $school
+ * @property-read \App\Models\Section $section
+ * @property-read \App\Models\Student $student
+ * @property-read \App\Models\Subject $subject
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereClassroomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereExamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereFullGpa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereFullMarks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereGpaGained($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark wherePassGpa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark wherePassMarks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereRemark($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereSectionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereStudentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereSubjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereTotalMarks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Mark whereUpdatedAt($value)
+ */
+	class Mark extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\School
  *
  * @property int $id

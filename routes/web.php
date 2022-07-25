@@ -60,6 +60,7 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
     Route::patch('school/{school}', [App\Http\Controllers\User\SchoolController::class, 'update'])->name('schools.update');
 
     // Classrooms
+    Route::get('classrooms/{classroom}/sections',[ClassroomsController::class, 'getSections'])->name('classrooms.getSections');
     Route::resource('classrooms', ClassroomsController::class);
 
     // Class Sections
