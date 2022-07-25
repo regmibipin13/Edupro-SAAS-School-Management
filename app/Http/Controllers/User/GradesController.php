@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Grade;
 use Illuminate\Http\Request;
 
 class GradesController extends Controller
@@ -14,7 +15,8 @@ class GradesController extends Controller
      */
     public function index()
     {
-        //
+        $grades = Grade::orderBy('id', 'desc')->paginate(10);
+        return view('user.grades.index', compact('grades'));
     }
 
     /**
@@ -24,7 +26,7 @@ class GradesController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -35,7 +37,14 @@ class GradesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sanitized = $request->validate([
+            'name' => 'required',
+            'marks_from' => 'required',
+            'marks_to' => 'required',
+            'remarks' => 'required',
+        ]);
+        Grade::create($sanitized);
+        return redirect()->back()->with('success', 'Grade Created Successfully');
     }
 
     /**
@@ -46,7 +55,7 @@ class GradesController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -57,7 +66,7 @@ class GradesController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -67,9 +76,16 @@ class GradesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Grade $grade)
     {
-        //
+        $sanitized = $request->validate([
+            'name' => 'required',
+            'marks_from' => 'required',
+            'marks_to' => 'required',
+            'remarks' => 'required',
+        ]);
+        $grade->update($sanitized);
+        return redirect()->back()->with('success', 'Grade Updated Successfully');
     }
 
     /**
@@ -78,8 +94,9 @@ class GradesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Grade $grade)
     {
-        //
+        $grade->delete();
+        return redirect()->back()->with('success', 'Grade Deleted Successfully');
     }
 }

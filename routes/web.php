@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\ClassroomsController;
 use App\Http\Controllers\User\ExamController;
+use App\Http\Controllers\User\GradesController;
 use App\Http\Controllers\User\SectionsController;
 use App\Http\Controllers\User\StudentsController;
 use App\Http\Controllers\User\SubjectsController;
@@ -60,7 +61,7 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
     Route::patch('school/{school}', [App\Http\Controllers\User\SchoolController::class, 'update'])->name('schools.update');
 
     // Classrooms
-    Route::get('classrooms/{classroom}/sections',[ClassroomsController::class, 'getSections'])->name('classrooms.getSections');
+    Route::get('classrooms/{classroom}/sections', [ClassroomsController::class, 'getSections'])->name('classrooms.getSections');
     Route::resource('classrooms', ClassroomsController::class);
 
     // Class Sections
@@ -77,6 +78,9 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     // Students
     Route::resource('students', StudentsController::class);
+
+    //Grades
+    Route::resource('grades', GradesController::class);
 });
 
 Route::middleware('auth')->group(function () {
