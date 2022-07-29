@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
+use App\Models\Exam;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class MarksController extends Controller
@@ -12,9 +15,17 @@ class MarksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $classes = Classroom::all();
+        $exams = Exam::all();
+
+        $students = [];
+        if(eligibleForMarks()) {
+          $students = Student::with(['user'])->where('classroom_id',$request->classroom_id)->where('section_id',$request->section_id)->get();
+        }
+
+        return view('user.marks.index', compact('classes', 'exams','students'));
     }
 
     /**

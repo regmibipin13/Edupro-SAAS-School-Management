@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\School;
 use App\Models\Section;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class ClassroomsController extends Controller
@@ -102,5 +103,10 @@ class ClassroomsController extends Controller
     public function getSections($classroom_id)
     {
       return Section::where('classroom_id',$classroom_id)->get();
+    }
+
+    public function getSubjects($classroom_id)
+    {
+      return Subject::where('classroom_id',$classroom_id)->get();
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\ClassroomsController;
 use App\Http\Controllers\User\ExamController;
 use App\Http\Controllers\User\GradesController;
+use App\Http\Controllers\User\MarksController;
 use App\Http\Controllers\User\SectionsController;
 use App\Http\Controllers\User\StudentsController;
 use App\Http\Controllers\User\SubjectsController;
@@ -62,6 +63,7 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     // Classrooms
     Route::get('classrooms/{classroom}/sections', [ClassroomsController::class, 'getSections'])->name('classrooms.getSections');
+    Route::get('classrooms/{classroom}/subjects',[ClassroomsController::class, 'getSubjects'])->name('classrooms.getSubjects');
     Route::resource('classrooms', ClassroomsController::class);
 
     // Class Sections
@@ -81,6 +83,9 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     //Grades
     Route::resource('grades', GradesController::class);
+
+    // Marks
+    Route::resource('marks', MarksController::class);
 });
 
 Route::middleware('auth')->group(function () {
