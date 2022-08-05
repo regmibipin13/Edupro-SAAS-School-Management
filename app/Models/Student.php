@@ -22,6 +22,10 @@ class Student extends Model
         'user' => 'name',
     ];
 
+    protected $appends = [
+        'total_marks'
+    ];
+
 
     protected $guarded = ['id'];
 
@@ -40,5 +44,24 @@ class Student extends Model
     public function parent()
     {
         return $this->belongsTo(User::class, 'parent_id');
+    }
+
+    public function marks()
+    {
+        return $this->hasMany(Mark::class);
+    }
+
+    public function getMarks($examID, $subjectID)
+    {
+        $mark = $this->marks()->where('exam_id', $examID)->where('subject_id', $subjectID)->first();
+        return $mark ? $mark->total_marks : '';
+    }
+
+    public function getTotalMarksAttribute()
+    {
+        if (request()->has('exam_id') && request()->has('subject_id')) {
+            return $this->getMarks(request()->exam_id, request()->subject_id);
+        }
+        return '';
     }
 }

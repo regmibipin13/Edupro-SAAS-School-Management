@@ -234,6 +234,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Classroom $classroom
+ * @property-read mixed $total_marks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Mark[] $marks
+ * @property-read int|null $marks_count
  * @property-read \App\Models\User $parent
  * @property-read \App\Models\School $school
  * @property-read \App\Models\Section $section
@@ -268,6 +271,8 @@ namespace App\Models{
  * @property int $school_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $full_marks
+ * @property int $pass_marks
  * @property-read \App\Models\Classroom $classroom
  * @property-read \App\Models\School $school
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $teachers
@@ -279,8 +284,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereClassroomId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject whereFullMarks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subject wherePassMarks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereSchoolId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereUpdatedAt($value)
  */

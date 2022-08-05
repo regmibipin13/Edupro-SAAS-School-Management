@@ -4,7 +4,7 @@
         'header' => '',
     ])
 
-    <div class="content">
+    <div class="content" refs="">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-md-12">
@@ -12,8 +12,8 @@
                         <div class="card-header">
                             <h4 class="card-title">Search Classroom</h4> <br />
                             <br />
-                            <form action="{{ route('user.marks.index') }}" method="get" class="row d-flex align-items-center"
-                                style="align-items:flex-end">
+                            <form action="{{ route('user.marks.index') }}" method="get"
+                                class="row d-flex align-items-center" style="align-items:flex-end">
                                 <div class="col-md-3">
                                     <label for="exam_id">Exam</label>
                                     <select name="exam_id" id="exam_id" class="form-control mr-2">
@@ -27,7 +27,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="classroom_id">Select Classroom</label>
-                                    <select name="classroom_id" id="classroom_id" class="form-control mr-2" onchange="changeClass();">
+                                    <select name="classroom_id" id="classroom_id" class="form-control mr-2"
+                                        onchange="changeClass();">
                                         <option value="">Select Class</option>
                                         @foreach ($classes as $class)
                                             <option value="{{ $class->id }}"
@@ -51,48 +52,73 @@
                                     </select>
                                 </div>
                                 <div class="col-md-2 mt-2">
-                                  <button type="submit" class="btn btn-success">Search</button>
+                                    <button type="submit" class="btn btn-success">Search</button>
                                 </div>
                             </form>
                         </div>
-                        @if(eligibleForMarks())
-                        <marks-entry inline-template>
-                            <div>
-                                <div class="card-body">
-                                    <table class="table table-bordered" id="myTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Student Name</th>
-                                                <th>Student Admission Number</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          @foreach($students as $student)
-                                                <tr>
-                                                  {{ $student->user->name }}
-                                                </tr>
+                        @if (eligibleForMarks())
+                            <marks-entry :students-lists="{{ $data['students']->toJson() }}"
+                                :subject="{{ $data['subject'] }}" :exam="{{ $data['exam'] }}" inline-template>
+                                <div>
+                                    <form action="{{ route('user.marks.store') }}" method="post" ref="formContainer"
+                                        @submit.prevent="onSubmit">
+                                        @csrf
+                                        <div class="card-body">
+                                            <div class="details pb-2">
+                                                <b> Exam: {{ $data['exam']->name }}</b>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <b> Subject: {{ $data['subject']->name }}
+                                                    ({{ $data['subject']->code }})</b>
 
-                                                  {{ $student->admission_number }}
-                                                <tr>
-                                                    <td id="colspan-automate" class="text-center">
-                                                        <span class="text-secondary text-center">No Data Available</span>
-                                                    </td>
-                                                </tr>
+                                            </div>
+                                            <table class="table table-bordered" id="myTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Student Name (ID)</th>
+                                                        <th>Student Admission Number</th>
+                                                        <th>Class</th>
+                                                        <th>Section</th>
+                                                        <th>Marks Attained</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{-- @foreach ($data['students'] as $student)
+                                                        <tr>
+                                                            <td>{{ $student->user->name }}({{ $student->id }})</td>
+                                                            <td>{{ $student->admission_number }}</td>
+                                                            <td>{{ $student->classroom->name }}</td>
+                                                            <td>{{ $student->section->name }}</td>
+                                                            <td>
+                                                                <input type="number" name="student_mark[]"
+                                                                    placeholder="ex. 10" class="form-control" min="0"
+                                                                    max="100"
+                                                                    value="{{ $student->getMarks($data['exam']->id, $data['subject']->id) }}">
+                                                                <input type="hidden" name="student_id[]"
+                                                                    value="{{ $student->id }}">
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach --}}
+                                                    <tr v-for="(student,index) in students">
+                                                        <td>@{{ student.user.name }}(@{{ student.id }})</td>
+                                                        <td>@{{ student.admission_number }}</td>
+                                                        <td>@{{ student.classroom.name }}</td>
+                                                        <td>@{{ student.section.name }}</td>
+                                                        <td>
+                                                            <input type="number" name="" placeholder="ex. 10"
+                                                                class="form-control" min="0" max="100"
+                                                                v-model="students[index].total_marks">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
 
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
+                                        <div class="card-footer">
+                                            <button class="btn btn-success"type="submit">Update Marks</button>
+                                        </div>
+                                    </form>
                                 </div>
-
-                                <div class="card-body">
-                                    <button class="btn btn-success">Update Marks</button>
-                                </div>
-                            </div>
-                        </marks-entry>
+                            </marks-entry>
                         @endif
                     </div>
                 </div>
@@ -103,7 +129,12 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            changeClass();
+        });
+
         function resetSection() {
+            console.log('fired')
             $('#section_id').empty();
             $('#subject_id').empty();
         }
@@ -152,12 +183,7 @@
 
 
             }
-
-
         }
-        $(document).ready(function() {
-            changeClass();
-        });
 
         function getUrlParameter(sParam) {
             var sPageURL = window.location.search.substring(1),

@@ -5488,9 +5488,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['studentsLists', 'subject', 'exam'],
   data: function data() {
-    return {};
+    return {
+      students: []
+    };
+  },
+  methods: {
+    onSubmit: function onSubmit() {
+      var loader = this.$loading.show({
+        container: this.$refs.formContainer,
+        canCancel: false
+      });
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/marks', {
+        students: this.students,
+        exam: this.exam,
+        subject: this.subject
+      }).then(function (response) {
+        if (response.data.hasOwnProperty('status') && response.data.status == 'success') {
+          Vue.$toast.success('Student Marks Updated Successfully');
+        }
+      })["catch"](function (error) {
+        Vue.$toast.error('Something went wrong . Please try again later');
+      });
+      loader.hide();
+    }
+  },
+  mounted: function mounted() {
+    this.students = this.studentsLists;
   }
 });
 

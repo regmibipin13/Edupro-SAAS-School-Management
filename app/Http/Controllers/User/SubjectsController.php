@@ -48,6 +48,8 @@ class SubjectsController extends Controller
             'code' => 'required',
             'classroom_id' => 'required',
             'users' => 'required',
+            'full_marks' => 'required',
+            'pass_marks' => 'required',
         ]);
 
         $subject = Subject::create($sanitized);
@@ -92,6 +94,8 @@ class SubjectsController extends Controller
             'code' => 'required',
             'classroom_id' => 'required',
             'users' => 'required',
+            'full_marks' => 'required',
+            'pass_marks' => 'required',
         ]);
 
         $subject->update($sanitized);

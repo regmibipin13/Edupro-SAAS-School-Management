@@ -49,6 +49,18 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label for="full_marks">{{ __('Full Marks *') }}</label>
+                                    <input type="number" id="full_marks"
+                                        class="form-control {{ $errors->has('full_marks') ? 'is-invalid' : '' }}" name="full_marks"
+                                        value="{{ isset($subject) ? old('name', $subject->full_marks) : old('full_marks', '') }}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="pass_marks">{{ __('Pass Marks *') }}</label>
+                                    <input type="number" id="pass_marks"
+                                        class="form-control {{ $errors->has('pass_marks') ? 'is-invalid' : '' }}" name="pass_marks"
+                                        value="{{ isset($subject) ? old('name', $subject->pass_marks) : old('pass_marks', '') }}">
+                                </div>
 
                                 <button class="btn btn-success mr-2">Save</button>
                                 <a class="btn btn-danger" href="{{ route('user.subjects.index') }}">Reset</a>
@@ -87,6 +99,8 @@
                                     <tr>
                                         <th>Subject Name</th>
                                         <th>Class Name</th>
+                                        <th>Pass Mark</th>
+                                        <th>Full Mark</th>
                                         <th>Teachers</th>
                                         <th>School</th>
                                         <th>Actions</th>
@@ -97,6 +111,8 @@
                                         <tr>
                                             <td>{{ $sec->name }}</td>
                                             <td>{{ $sec->classroom->name }}</td>
+                                            <td>{{ $sec->pass_marks }}</td>
+                                            <td>{{ $sec->full_marks }}</td>
                                             <td>
                                                 @foreach ($sec->teachers as $teacher)
                                                     <span
@@ -149,6 +165,8 @@
             $('.card-title').text("Edit subject")
             $('#name').val(subject.name);
             $('#code').val(subject.code);
+            $('#pass_marks').val(subject.pass_marks);
+            $('#full_marks').val(subject.full_marks);
             var users = subject.teachers.map(value => value.id);
             $('#users').val(users).change();
             $('#classroom_id').val(subject.classroom_id).change();
