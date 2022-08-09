@@ -16,7 +16,7 @@
                                 class="row d-flex align-items-center" style="align-items:flex-end">
                                 <div class="col-md-3">
                                     <label for="exam_id">Exam</label>
-                                    <select name="exam_id" id="exam_id" class="form-control mr-2">
+                                    <select name="exam_id" id="exam_id" class="form-control select2 mr-2">
                                         <option value="">Select Exam</option>
                                         @foreach ($exams as $exam)
                                             <option value="{{ $exam->id }}"
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="classroom_id">Select Classroom</label>
-                                    <select name="classroom_id" id="classroom_id" class="form-control mr-2"
+                                    <select name="classroom_id" id="classroom_id" class="form-control select2 mr-2"
                                         onchange="changeClass();">
                                         <option value="">Select Class</option>
                                         @foreach ($classes as $class)
@@ -39,14 +39,14 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="section_id">Select Section</label>
-                                    <select class="form-control" name="section_id" id="section_id">
+                                    <select class="form-control select2" name="section_id" id="section_id">
                                         <option value="">Select A Section</option>
 
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="section_id">Select Subject</label>
-                                    <select class="form-control" name="subject_id" id="subject_id">
+                                    <select class="form-control select2" name="subject_id" id="subject_id">
                                         <option value="">Select A Subject</option>
 
                                     </select>

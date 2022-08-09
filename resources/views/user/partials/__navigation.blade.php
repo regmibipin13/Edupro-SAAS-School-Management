@@ -65,7 +65,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
-                        Exams and Results
+                        {{__('Exams and Results')}}
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -73,19 +73,25 @@
                     <li class="nav-item">
                         <a href="{{ route('user.exams.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Exams</p>
+                            <p>{{ __('Exams') }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('user.grades.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Grades</p>
+                            <p>{{__('Grades')}}</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('user.marks.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Marks</p>
+                            <p>{{ __('Marks') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.marksheets.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Marksheet') }}</p>
                         </a>
                     </li>
                 </ul>
@@ -95,7 +101,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
-                        Student Information
+                        {{ __('Student Information') }}
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -103,13 +109,26 @@
                     <li class="nav-item">
                         <a href="{{ route('user.students.create') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Admin Student</p>
+                            <p>{{ __('Admin Student') }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('user.students.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Students List</p>
+                            <p>{{ __('Students List') }}</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('user.attendances.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Attendance Lists') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.attendances.create') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Add/Edit Attendance') }}</p>
                         </a>
                     </li>
                 </ul>

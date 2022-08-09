@@ -4,10 +4,12 @@ use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\User\AttendancesController;
 use App\Http\Controllers\User\ClassroomsController;
 use App\Http\Controllers\User\ExamController;
 use App\Http\Controllers\User\GradesController;
 use App\Http\Controllers\User\MarksController;
+use App\Http\Controllers\User\MarksheetController;
 use App\Http\Controllers\User\SectionsController;
 use App\Http\Controllers\User\StudentsController;
 use App\Http\Controllers\User\SubjectsController;
@@ -27,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->to('/login');
 });
 
 Auth::routes();
@@ -63,7 +65,7 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     // Classrooms
     Route::get('classrooms/{classroom}/sections', [ClassroomsController::class, 'getSections'])->name('classrooms.getSections');
-    Route::get('classrooms/{classroom}/subjects',[ClassroomsController::class, 'getSubjects'])->name('classrooms.getSubjects');
+    Route::get('classrooms/{classroom}/subjects', [ClassroomsController::class, 'getSubjects'])->name('classrooms.getSubjects');
     Route::resource('classrooms', ClassroomsController::class);
 
     // Class Sections
@@ -86,6 +88,14 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     // Marks
     Route::resource('marks', MarksController::class);
+
+    // Marksheet
+    Route::get('marksheets/{student}/{exam}', [MarksheetController::class, 'marksheet'])->name('marksheets.view');
+    Route::get('marksheets', [MarksheetController::class, 'index'])->name('marksheets.index');
+
+
+    // Attendance
+    Route::resource('attendances', AttendancesController::class);
 });
 
 Route::middleware('auth')->group(function () {

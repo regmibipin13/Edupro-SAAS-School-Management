@@ -128,4 +128,9 @@ class MarksController extends Controller
         })->first();
         return $mark ? $mark->total_marks : '';
     }
+
+    public function marksheet()
+    {
+        return  view('templates.marksheet');
+    }
 }

@@ -12,6 +12,42 @@
 
 namespace App\Models{
 /**
+ * App\Models\Attendance
+ *
+ * @property int $id
+ * @property int $school_id
+ * @property int $student_id
+ * @property int $classroom_id
+ * @property int $section_id
+ * @property string $date
+ * @property string $attendance
+ * @property string|null $absent_reason
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classroom $classroom
+ * @property-read \App\Models\School $school
+ * @property-read \App\Models\Section $section
+ * @property-read \App\Models\Student $student
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance filters($request)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereAbsentReason($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereAttendance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereClassroomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereSectionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereStudentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUpdatedAt($value)
+ */
+	class Attendance extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Classroom
  *
  * @property int $id
@@ -20,6 +56,8 @@ namespace App\Models{
  * @property int $school_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Attendance[] $attendances
+ * @property-read int|null $attendances_count
  * @property-read \App\Models\School $school
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Section[] $sections
  * @property-read int|null $sections_count
@@ -199,6 +237,8 @@ namespace App\Models{
  * @property int $school_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Attendance[] $attendances
+ * @property-read int|null $attendances_count
  * @property-read \App\Models\User $class_teacher
  * @property-read \App\Models\Classroom $classroom
  * @property-read \App\Models\School $school
@@ -233,7 +273,11 @@ namespace App\Models{
  * @property string $blood_group
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Attendance[] $attendances
+ * @property-read int|null $attendances_count
  * @property-read \App\Models\Classroom $classroom
+ * @property-read mixed $absent_reason
+ * @property-read mixed $attendance
  * @property-read mixed $total_marks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Mark[] $marks
  * @property-read int|null $marks_count

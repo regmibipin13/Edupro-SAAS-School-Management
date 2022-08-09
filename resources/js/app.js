@@ -23,6 +23,8 @@ Vue.use(VueLoading)
 Vue.component('admit-student',require('./components/AdmitStudent.vue').default);
 Vue.component('admit-student-edit',require('./components/AdmitStudentEdit.vue').default);
 Vue.component('marks-entry', require('./components/MarksEntry.vue').default);
+Vue.component('attendance-lists', require('./components/AttendanceList.vue').default);
+Vue.component('attendance-create', require('./components/AttendanceCreate.vue').default);
 
 
 
