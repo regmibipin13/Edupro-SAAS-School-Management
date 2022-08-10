@@ -39,6 +39,9 @@ class StudentsController extends Controller
      */
     public function create()
     {
+        if (!hasRole(['School Admin'])) {
+            return abort(403);
+        }
         $classes = Classroom::with('sections')->get();
         $parents = User::whereHas('roles', function ($role) {
             $role->where('name', 'Parents');
@@ -83,6 +86,9 @@ class StudentsController extends Controller
      */
     public function edit(Student $student)
     {
+        if (!hasRole(['School Admin', 'Teachers'])) {
+            return abort(403);
+        }
         $classes = Classroom::with('sections')->get();
         $parents = User::whereHas('roles', function ($role) {
             $role->where('name', 'Parents');

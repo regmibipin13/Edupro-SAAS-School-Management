@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="card-body" @if (!hasRole('School Admin')) style="pointer-events: none;" @endif>
     <div class="form-group">
         <label for="name">{{ __('School Full Name *') }}</label>
         <input type="text" va class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name"
@@ -50,9 +50,8 @@
         </div>
         <div class="col-md-6 form-group">
             <label for="address">{{ __('Full Address *') }}</label>
-            <input type="text" id="address"
-                class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address"
-                placeholder="{{ __('School Address') }}"
+            <input type="text" id="address" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
+                name="address" placeholder="{{ __('School Address') }}"
                 value="{{ isset($school) ? old('address', $school->address) : old('address', '') }}">
             @if ($errors->has('address'))
                 <span class="text-danger">{{ $errors->first('address') }}</span>
@@ -106,8 +105,8 @@
 
     <div class="form-group">
         <label for="google_map_link">{{ __('Google Map Link') }}</label>
-        <input type="text" class="form-control" name="google_map_link"
-            placeholder="{{ __('Google Map Link') }}" id="google_map_link"
+        <input type="text" class="form-control" name="google_map_link" placeholder="{{ __('Google Map Link') }}"
+            id="google_map_link"
             value="{{ isset($school) ? old('google_map_link', $school->google_map_link) : old('google_map_link', '') }}">
     </div>
 
@@ -121,6 +120,8 @@
     </div> --}}
 </div>
 
-<div class="card-footer">
-    <button type="submit" class="btn btn-success">Save</button>
-</div>
+@if (hasRole('School Admin'))
+    <div class="card-footer">
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+@endif

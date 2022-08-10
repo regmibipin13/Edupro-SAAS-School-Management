@@ -17,6 +17,9 @@ class AttendancesController extends Controller
      */
     public function index(Request $request)
     {
+        if (!hasRole(['School Admin', 'Teachers'])) {
+            return abort(403);
+        }
         $attendances = Attendance::with(['student'])->filters($request)->paginate(50);
         $classrooms = Classroom::all();
         return view('user.attendances.index', compact('attendances', 'classrooms'));
@@ -29,6 +32,9 @@ class AttendancesController extends Controller
      */
     public function create(Request $request)
     {
+        if (!hasRole(['School Admin', 'Teachers'])) {
+            return abort(403);
+        }
         $classrooms = Classroom::all();
         $students = [];
         if ($request->has('classroom_id') && $request->has('section_id')) {

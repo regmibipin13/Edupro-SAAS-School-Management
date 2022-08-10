@@ -6,39 +6,42 @@
 
     <div class="content">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-md-12 import-export-buttons">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Create New Class</h4>
+            @if (hasRole('School Admin'))
+                <div class="row mb-2">
+                    <div class="col-md-12 import-export-buttons">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Create New Class</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('user.classrooms.store') }}" method="POST">
+                                    @csrf
+
+                                    <div class="form-group">
+                                        <label for="name">{{ __('Class Name *') }}</label>
+                                        <input type="text" id="name"
+                                            class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                            name="name"
+                                            value="{{ isset($class) ? old('name', $class->name) : old('name', '') }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">{{ __('Class Location') }}</label>
+                                        <input type="text" id="location"
+                                            class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                            name="location"
+                                            value="{{ isset($class) ? old('name', $class->name) : old('name', '') }}">
+                                    </div>
+
+                                    <button class="btn btn-success">Save</button>
+                                    <a class="btn btn-danger" href="{{ route('user.classrooms.index') }}">Reset</a>
+
+                                </form>
+                            </div>
+
                         </div>
-                        <div class="card-body">
-                            <form action="{{ route('user.classrooms.store') }}" method="POST">
-                                @csrf
-
-                                <div class="form-group">
-                                    <label for="name">{{ __('Class Name *') }}</label>
-                                    <input type="text" id="name"
-                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name"
-                                        value="{{ isset($class) ? old('name', $class->name) : old('name', '') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">{{ __('Class Location') }}</label>
-                                    <input type="text" id="location"
-                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                                        name="location"
-                                        value="{{ isset($class) ? old('name', $class->name) : old('name', '') }}">
-                                </div>
-
-                                <button class="btn btn-success">Save</button>
-                                <a class="btn btn-danger" href="{{ route('user.classrooms.index') }}">Reset</a>
-
-                            </form>
-                        </div>
-
                     </div>
                 </div>
-            </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="card">
@@ -65,16 +68,18 @@
                                             <td>{{ $class->school->name }}</td>
 
                                             <td>
-                                                <a href="#" onclick="edit({{ $class }})"
-                                                    class="btn btn-sm btn-primary">Edit</a>
-                                                {{-- <a href="" class="btn btn-sm btn-info">View</a> --}}
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger"
-                                                    onclick="document.getElementById('delete-form-{{ $class->id }}').submit();">Delete</a>
-                                                <form action="{{ route('user.classrooms.destroy', $class->id) }}"
-                                                    id="delete-form-{{ $class->id }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                @if (hasRole('School Admin'))
+                                                    <a href="#" onclick="edit({{ $class }})"
+                                                        class="btn btn-sm btn-primary">Edit</a>
+                                                    {{-- <a href="" class="btn btn-sm btn-info">View</a> --}}
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger"
+                                                        onclick="document.getElementById('delete-form-{{ $class->id }}').submit();">Delete</a>
+                                                    <form action="{{ route('user.classrooms.destroy', $class->id) }}"
+                                                        id="delete-form-{{ $class->id }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

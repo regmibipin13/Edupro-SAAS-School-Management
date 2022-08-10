@@ -63,3 +63,14 @@ function findRemark($mark)
         return 'Not Specified';
     }
 }
+
+function hasRole($roleName)
+{
+    if (auth()->check()) {
+        if (auth()->user()->hasRole($roleName)) {
+            return true;
+        }
+        return false;
+    }
+    return false;
+}

@@ -18,22 +18,25 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('user.users.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>
-                        {{ __('Users') }}
-                    </p>
-                </a>
-            </li>
+            @if (hasRole('School Admin'))
+                <li class="nav-item">
+                    <a href="{{ route('user.users.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            {{ __('Users') }}
+                        </p>
+                    </a>
+                </li>
+            @endif
             <li class="nav-item">
                 <a href="{{ route('user.schools.edit', Auth::user()->school_id) }}" class="nav-link">
                     <i class="nav-icon fas fa-school"></i>
                     <p>
-                        {{ __('School Details') }}
+                        {{ __('My School Details') }}
                     </p>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="{{ route('user.classrooms.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
@@ -65,7 +68,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
-                        {{__('Exams and Results')}}
+                        {{ __('Exams and Results') }}
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -79,15 +82,17 @@
                     <li class="nav-item">
                         <a href="{{ route('user.grades.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>{{__('Grades')}}</p>
+                            <p>{{ __('Grades') }}</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('user.marks.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Marks') }}</p>
-                        </a>
-                    </li>
+                    @if (hasRole(['School Admin', 'Teachers']))
+                        <li class="nav-item">
+                            <a href="{{ route('user.marks.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Marks') }}</p>
+                            </a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a href="{{ route('user.marksheets.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
@@ -96,43 +101,52 @@
                     </li>
                 </ul>
             </li>
+            @if (hasRole(['School Admin', 'Teachers']))
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-circle nav-icon"></i>
+                        <p>
+                            {{ __('Student Information') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-circle nav-icon"></i>
-                    <p>
-                        {{ __('Student Information') }}
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
-                        <a href="{{ route('user.students.create') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Admin Student') }}</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('user.students.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Students List') }}</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('user.attendances.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Attendance Lists') }}</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('user.attendances.create') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Add/Edit Attendance') }}</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        @if (hasRole('School Admin'))
+                            <li class="nav-item">
+                                <a href="{{ route('user.students.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Admit Student') }}</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (hasRole(['School Admin', 'Teachers']))
+                            <li class="nav-item">
+                                <a href="{{ route('user.students.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Students List') }}</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (hasRole(['School Admin', 'Teachers']))
+                            <li class="nav-item">
+                                <a href="{{ route('user.attendances.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Attendance Lists') }}</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (hasRole(['School Admin', 'Teachers']))
+                            <li class="nav-item">
+                                <a href="{{ route('user.attendances.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Add/Edit Attendance') }}</p>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

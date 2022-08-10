@@ -6,50 +6,53 @@
 
     <div class="content">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-md-12 import-export-buttons">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Create New Exam</h4>
-                        </div>
-                        <div class="card-body">
-                            <form action="{{ route('user.exams.store') }}" method="POST" class="row">
-                                @csrf
-                                <div class="form-group col-md-6">
-                                    <label for="name">{{ __('Exam Name *') }}</label>
-                                    <input type="text" id="name"
-                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name"
-                                        value="{{ isset($subject) ? old('name', $subject->name) : old('name', '') }}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="term">{{ __('Exam Term *') }}</label>
-                                    <select name="term" id="term" class="form-control">
-                                        <option value="First Term">First Term</option>
-                                        <option value="Second Term">Second Term</option>
-                                        <option value="Third Term">Third Term</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="start_date">{{ __('Start Date *') }}</label>
-                                    <input type="date"
-                                        class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}"
-                                        name="start_date" id="start_date">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="end_date">{{ __('End Date *') }}</label>
-                                    <input type="date"
-                                        class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}"
-                                        name="end_date" id="end_date">
-                                </div>
-                                <button class="btn btn-success mr-2">Save</button>
-                                <a class="btn btn-danger" href="{{ route('user.exams.index') }}">Reset</a>
+            @if (hasRole('School Admin'))
+                <div class="row mb-2">
+                    <div class="col-md-12 import-export-buttons">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Create New Exam</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('user.exams.store') }}" method="POST" class="row">
+                                    @csrf
+                                    <div class="form-group col-md-6">
+                                        <label for="name">{{ __('Exam Name *') }}</label>
+                                        <input type="text" id="name"
+                                            class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                            name="name"
+                                            value="{{ isset($subject) ? old('name', $subject->name) : old('name', '') }}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="term">{{ __('Exam Term *') }}</label>
+                                        <select name="term" id="term" class="form-control">
+                                            <option value="First Term">First Term</option>
+                                            <option value="Second Term">Second Term</option>
+                                            <option value="Third Term">Third Term</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="start_date">{{ __('Start Date *') }}</label>
+                                        <input type="date"
+                                            class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}"
+                                            name="start_date" id="start_date">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="end_date">{{ __('End Date *') }}</label>
+                                        <input type="date"
+                                            class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}"
+                                            name="end_date" id="end_date">
+                                    </div>
+                                    <button class="btn btn-success mr-2">Save</button>
+                                    <a class="btn btn-danger" href="{{ route('user.exams.index') }}">Reset</a>
 
-                            </form>
-                        </div>
+                                </form>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="card">
@@ -100,16 +103,18 @@
                                             <td>{{ $exam->school->name }}</td>
 
                                             <td>
-                                                <a href="#" onclick="edit({{ $exam }})"
-                                                    class="btn btn-sm btn-primary">Edit</a>
-                                                {{-- <a href="" class="btn btn-sm btn-info">View</a> --}}
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger"
-                                                    onclick="document.getElementById('delete-form-{{ $exam->id }}').submit();">Delete</a>
-                                                <form action="{{ route('user.exams.destroy', $exam->id) }}"
-                                                    id="delete-form-{{ $exam->id }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                @if (hasRole('School Admin'))
+                                                    <a href="#" onclick="edit({{ $exam }})"
+                                                        class="btn btn-sm btn-primary">Edit</a>
+                                                    {{-- <a href="" class="btn btn-sm btn-info">View</a> --}}
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger"
+                                                        onclick="document.getElementById('delete-form-{{ $exam->id }}').submit();">Delete</a>
+                                                    <form action="{{ route('user.exams.destroy', $exam->id) }}"
+                                                        id="delete-form-{{ $exam->id }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

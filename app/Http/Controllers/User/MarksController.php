@@ -20,6 +20,9 @@ class MarksController extends Controller
      */
     public function index(Request $request)
     {
+        if (!hasRole(['School Admin', 'Teachers'])) {
+            return abort(403);
+        }
         $classes = Classroom::all();
         $exams = Exam::all();
         $data = [];

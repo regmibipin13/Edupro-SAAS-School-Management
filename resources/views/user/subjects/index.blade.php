@@ -6,71 +6,77 @@
 
     <div class="content">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-md-12 import-export-buttons">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Create New Subject</h4>
+            @if (hasRole('School Admin'))
+                <div class="row mb-2">
+                    <div class="col-md-12 import-export-buttons">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Create New Subject</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('user.subjects.store') }}" method="POST" class="row">
+                                    @csrf
+                                    <div class="form-group col-md-6">
+                                        <label for="name">{{ __('Subject Name *') }}</label>
+                                        <input type="text" id="name"
+                                            class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                            name="name"
+                                            value="{{ isset($subject) ? old('name', $subject->name) : old('name', '') }}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="code">{{ __('Subject Code') }}</label>
+                                        <input type="text" id="code"
+                                            class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}"
+                                            name="code"
+                                            value="{{ isset($subject) ? old('code', $subject->code) : old('code', '') }}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="classroom_id">{{ __('Class') }}</label>
+                                        <select name="classroom_id" id="classroom_id"
+                                            class="form-control select2 {{ $errors->has('classroom_id') ? 'is-invalid' : '' }}">
+                                            @foreach ($classrooms as $class)
+                                                <option value="{{ $class->id }}"
+                                                    {{ isset($subject) ? ($subject->classroom_id == $class->id ? 'selected' : '') : '' }}>
+                                                    {{ $class->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="users">{{ __('Teachers') }}</label>
+                                        <select name="users[]" id="users" multiple
+                                            class="form-control select2 {{ $errors->has('users') ? 'is-invalid' : '' }}">
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}"
+                                                    {{ isset($subject) ? ($subject->users->contains($user->id) ? 'selected' : '') : '' }}>
+                                                    {{ $user->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="full_marks">{{ __('Full Marks *') }}</label>
+                                        <input type="number" id="full_marks"
+                                            class="form-control {{ $errors->has('full_marks') ? 'is-invalid' : '' }}"
+                                            name="full_marks"
+                                            value="{{ isset($subject) ? old('name', $subject->full_marks) : old('full_marks', '') }}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="pass_marks">{{ __('Pass Marks *') }}</label>
+                                        <input type="number" id="pass_marks"
+                                            class="form-control {{ $errors->has('pass_marks') ? 'is-invalid' : '' }}"
+                                            name="pass_marks"
+                                            value="{{ isset($subject) ? old('name', $subject->pass_marks) : old('pass_marks', '') }}">
+                                    </div>
+
+                                    <button class="btn btn-success mr-2">Save</button>
+                                    <a class="btn btn-danger" href="{{ route('user.subjects.index') }}">Reset</a>
+
+                                </form>
+                            </div>
+
                         </div>
-                        <div class="card-body">
-                            <form action="{{ route('user.subjects.store') }}" method="POST" class="row">
-                                @csrf
-                                <div class="form-group col-md-6">
-                                    <label for="name">{{ __('Subject Name *') }}</label>
-                                    <input type="text" id="name"
-                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name"
-                                        value="{{ isset($subject) ? old('name', $subject->name) : old('name', '') }}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="code">{{ __('Subject Code') }}</label>
-                                    <input type="text" id="code"
-                                        class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code"
-                                        value="{{ isset($subject) ? old('code', $subject->code) : old('code', '') }}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="classroom_id">{{ __('Class') }}</label>
-                                    <select name="classroom_id" id="classroom_id"
-                                        class="form-control select2 {{ $errors->has('classroom_id') ? 'is-invalid' : '' }}">
-                                        @foreach ($classrooms as $class)
-                                            <option value="{{ $class->id }}"
-                                                {{ isset($subject) ? ($subject->classroom_id == $class->id ? 'selected' : '') : '' }}>
-                                                {{ $class->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="users">{{ __('Teachers') }}</label>
-                                    <select name="users[]" id="users" multiple
-                                        class="form-control select2 {{ $errors->has('users') ? 'is-invalid' : '' }}">
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}"
-                                                {{ isset($subject) ? ($subject->users->contains($user->id) ? 'selected' : '') : '' }}>
-                                                {{ $user->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="full_marks">{{ __('Full Marks *') }}</label>
-                                    <input type="number" id="full_marks"
-                                        class="form-control {{ $errors->has('full_marks') ? 'is-invalid' : '' }}" name="full_marks"
-                                        value="{{ isset($subject) ? old('name', $subject->full_marks) : old('full_marks', '') }}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="pass_marks">{{ __('Pass Marks *') }}</label>
-                                    <input type="number" id="pass_marks"
-                                        class="form-control {{ $errors->has('pass_marks') ? 'is-invalid' : '' }}" name="pass_marks"
-                                        value="{{ isset($subject) ? old('name', $subject->pass_marks) : old('pass_marks', '') }}">
-                                </div>
-
-                                <button class="btn btn-success mr-2">Save</button>
-                                <a class="btn btn-danger" href="{{ route('user.subjects.index') }}">Reset</a>
-
-                            </form>
-                        </div>
-
                     </div>
                 </div>
-            </div>
+            @endif
             <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="card">
@@ -122,16 +128,18 @@
                                             <td>{{ $sec->classroom->school->name }}</td>
 
                                             <td>
-                                                <a href="#" onclick="edit({{ $sec }})"
-                                                    class="btn btn-sm btn-primary">Edit</a>
-                                                {{-- <a href="" class="btn btn-sm btn-info">View</a> --}}
-                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger"
-                                                    onclick="document.getElementById('delete-form-{{ $sec->id }}').submit();">Delete</a>
-                                                <form action="{{ route('user.subjects.destroy', $sec->id) }}"
-                                                    id="delete-form-{{ $sec->id }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                @if (hasRole('School Admin'))
+                                                    <a href="#" onclick="edit({{ $sec }})"
+                                                        class="btn btn-sm btn-primary">Edit</a>
+                                                    {{-- <a href="" class="btn btn-sm btn-info">View</a> --}}
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger"
+                                                        onclick="document.getElementById('delete-form-{{ $sec->id }}').submit();">Delete</a>
+                                                    <form action="{{ route('user.subjects.destroy', $sec->id) }}"
+                                                        id="delete-form-{{ $sec->id }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
