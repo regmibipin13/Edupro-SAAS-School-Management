@@ -84,4 +84,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Subject::class, 'subject_users', 'user_id', 'subject_id');
     }
+
+    public function timetables()
+    {
+        return $this->hasMany(Timetable::class);
+    }
 }

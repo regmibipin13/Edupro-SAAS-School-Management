@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\AttendancesController;
 use App\Http\Controllers\User\ClassroomsController;
+use App\Http\Controllers\User\DaysController;
 use App\Http\Controllers\User\ExamController;
 use App\Http\Controllers\User\GradesController;
 use App\Http\Controllers\User\MarksController;
@@ -13,8 +14,10 @@ use App\Http\Controllers\User\MarksheetController;
 use App\Http\Controllers\User\SectionsController;
 use App\Http\Controllers\User\StudentsController;
 use App\Http\Controllers\User\SubjectsController;
+use App\Http\Controllers\User\TimesController;
 use App\Http\Controllers\User\UsersController as NormalUserController;
 use App\Models\Exam;
+use App\Models\Timetable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,6 +99,15 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
 
     // Attendance
     Route::resource('attendances', AttendancesController::class);
+
+    // Days
+    Route::resource('days', DaysController::class);
+
+    // Times
+    Route::resource('times', TimesController::class);
+
+    // Timetables
+    Route::resource('timetables', Timetable::class);
 });
 
 Route::middleware('auth')->group(function () {

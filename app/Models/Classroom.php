@@ -35,4 +35,8 @@ class Classroom extends Model
     {
         return $this->hasMany(Attendance::class);
     }
+    public function timetables()
+    {
+        return $this->hasMany(Timetable::class);
+    }
 }

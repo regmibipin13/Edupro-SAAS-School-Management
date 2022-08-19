@@ -23,6 +23,4 @@ class School extends Model
     public static $relationFilters = [
         'relation_name' => 'relation_column_name'
     ];
-
-    
 }

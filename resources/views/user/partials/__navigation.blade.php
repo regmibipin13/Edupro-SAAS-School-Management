@@ -101,6 +101,43 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-circle nav-icon"></i>
+                    <p>
+                        {{ __('Daily Routine') }}
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="{{ route('user.days.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Days') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.times.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Time Ranges') }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.timetables.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Show Timetable') }}</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('user.timetables.create') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Create Timetable') }}</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
             @if (hasRole(['School Admin', 'Teachers']))
                 <li class="nav-item">
                     <a href="#" class="nav-link">

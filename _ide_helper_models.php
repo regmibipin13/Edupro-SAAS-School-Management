@@ -63,6 +63,8 @@ namespace App\Models{
  * @property-read int|null $sections_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subject[] $subjects
  * @property-read int|null $subjects_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $timetables
+ * @property-read int|null $timetables_count
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom filters($request)
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom newQuery()
@@ -75,6 +77,30 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereUpdatedAt($value)
  */
 	class Classroom extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Day
+ *
+ * @property int $id
+ * @property int $school_id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\School $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $timetables
+ * @property-read int|null $timetables_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Day newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Day newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Day query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Day whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Day whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Day whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Day whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Day whereUpdatedAt($value)
+ */
+	class Day extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -242,6 +268,8 @@ namespace App\Models{
  * @property-read \App\Models\User $class_teacher
  * @property-read \App\Models\Classroom $classroom
  * @property-read \App\Models\School $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $timetables
+ * @property-read int|null $timetables_count
  * @method static \Illuminate\Database\Eloquent\Builder|Section filters($request)
  * @method static \Illuminate\Database\Eloquent\Builder|Section newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Section newQuery()
@@ -321,6 +349,8 @@ namespace App\Models{
  * @property-read \App\Models\School $school
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $teachers
  * @property-read int|null $teachers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $timetables
+ * @property-read int|null $timetables_count
  * @method static \Illuminate\Database\Eloquent\Builder|Subject filters($request)
  * @method static \Illuminate\Database\Eloquent\Builder|Subject newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Subject newQuery()
@@ -336,6 +366,67 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Subject whereUpdatedAt($value)
  */
 	class Subject extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Time
+ *
+ * @property int $id
+ * @property int $school_id
+ * @property string $time_from
+ * @property string $time_to
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\School $school
+ * @method static \Illuminate\Database\Eloquent\Builder|Time newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Time newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Time query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Time whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Time whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Time whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Time whereTimeFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Time whereTimeTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Time whereUpdatedAt($value)
+ */
+	class Time extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Timetable
+ *
+ * @property int $id
+ * @property int $school_id
+ * @property int $classroom_id
+ * @property int $section_id
+ * @property int $subject_id
+ * @property int $time_id
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classroom $classroom
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Day[] $days
+ * @property-read int|null $days_count
+ * @property-read \App\Models\School $school
+ * @property-read \App\Models\Section $section
+ * @property-read \App\Models\Subject $subject
+ * @property-read \App\Models\User $teacher
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable filters($request)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereClassroomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereSectionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereSubjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereTimeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereUserId($value)
+ */
+	class Timetable extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -369,6 +460,8 @@ namespace App\Models{
  * @property-read \App\Models\School|null $school
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subject[] $subjects
  * @property-read int|null $subjects_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $timetables
+ * @property-read int|null $timetables_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
