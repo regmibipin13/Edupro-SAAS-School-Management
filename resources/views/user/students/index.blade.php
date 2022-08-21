@@ -96,15 +96,17 @@
                                             <td>{{ $student->admitted_date }}</td>
                                             <td>{{ $student->school->name }}</td>
                                             <td class="d-flex align-items-center">
-                                                <a href="{{ route('user.students.edit', $student->id) }}"
-                                                    class="btn btn-sm btn-primary mr-2">Edit</a>
-                                                <form action="{{ route('user.students.destroy', $student->id) }}"
-                                                    onsubmit="return confirm('Are you sure you want to delete ?')"
-                                                    id="delete-form-{{ $student->id }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
+                                                @if (hasRole(['School Admin']))
+                                                    <a href="{{ route('user.students.edit', $student->id) }}"
+                                                        class="btn btn-sm btn-primary mr-2">Edit</a>
+                                                    <form action="{{ route('user.students.destroy', $student->id) }}"
+                                                        onsubmit="return confirm('Are you sure you want to delete ?')"
+                                                        id="delete-form-{{ $student->id }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

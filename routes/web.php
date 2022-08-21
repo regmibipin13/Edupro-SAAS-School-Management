@@ -15,9 +15,8 @@ use App\Http\Controllers\User\SectionsController;
 use App\Http\Controllers\User\StudentsController;
 use App\Http\Controllers\User\SubjectsController;
 use App\Http\Controllers\User\TimesController;
+use App\Http\Controllers\User\TimetablesController;
 use App\Http\Controllers\User\UsersController as NormalUserController;
-use App\Models\Exam;
-use App\Models\Timetable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -107,7 +106,7 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
     Route::resource('times', TimesController::class);
 
     // Timetables
-    Route::resource('timetables', Timetable::class);
+    Route::resource('timetables', TimetablesController::class);
 });
 
 Route::middleware('auth')->group(function () {

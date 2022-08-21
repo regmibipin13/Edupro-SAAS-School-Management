@@ -61,6 +61,8 @@ namespace App\Models{
  * @property-read \App\Models\School $school
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Section[] $sections
  * @property-read int|null $sections_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
+ * @property-read int|null $students_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subject[] $subjects
  * @property-read int|null $subjects_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $timetables
@@ -378,7 +380,12 @@ namespace App\Models{
  * @property string $time_to
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $days
+ * @property-read mixed $subject_id
+ * @property-read mixed $teacher_id
  * @property-read \App\Models\School $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $timetables
+ * @property-read int|null $timetables_count
  * @method static \Illuminate\Database\Eloquent\Builder|Time newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Time newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Time query()
@@ -412,6 +419,8 @@ namespace App\Models{
  * @property-read \App\Models\Section $section
  * @property-read \App\Models\Subject $subject
  * @property-read \App\Models\User $teacher
+ * @property-read \App\Models\Time $time
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable byRole()
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable filters($request)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newQuery()
@@ -449,6 +458,8 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $childs
+ * @property-read int|null $childs_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Section[] $class_sections
  * @property-read int|null $class_sections_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -458,6 +469,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
  * @property-read int|null $roles_count
  * @property-read \App\Models\School|null $school
+ * @property-read \App\Models\Student|null $student
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subject[] $subjects
  * @property-read int|null $subjects_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $timetables

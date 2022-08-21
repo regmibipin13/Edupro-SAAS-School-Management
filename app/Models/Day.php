@@ -15,6 +15,6 @@ class Day extends Model
 
     public function timetables()
     {
-        return $this->belongsToMany(Timetable::class, 'timetable_days', 'timetable_id', 'day_id');
+        return $this->belongsToMany(Timetable::class, 'timetable_days', 'day_id', 'timetable_id');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,6 +30,7 @@ class HomeController extends Controller
 
     public function userIndex()
     {
-        return view('user.dashboard');
+        $attendances = Attendance::whereDate('created_at', Carbon::now())->get()->groupBy('classroom_id');
+        return view('user.dashboard', compact('attendances'));
     }
 }

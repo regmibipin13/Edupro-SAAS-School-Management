@@ -13,6 +13,8 @@ class Timetable extends Model
     use SchoolMultitenancy;
     use Filterable;
 
+    protected $guarded = ['id'];
+
     public static $filters = [
         'classroom_id',
         'section_id',
@@ -22,7 +24,11 @@ class Timetable extends Model
 
     public function days()
     {
-        return $this->belongsToMany(Day::class, 'timetable_days', 'day_id', 'timetable_id');
+        return $this->belongsToMany(Day::class, 'timetable_days', 'timetable_id', 'day_id')->withTimestamps();
+    }
+    public function time()
+    {
+        return $this->belongsTo(Time::class, 'time_id');
     }
     public function classroom()
     {
@@ -39,5 +45,18 @@ class Timetable extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
+    public function scopeByRole($query)
+    {
+        if (auth()->user()->hasRole(['School Admin', 'Teachers'])) {
+            return $query;
+        } elseif (auth()->user()->hasRole('Students')) {
+            return $query->where('classroom_id', auth()->user()->student->classroom_id);
+        } elseif (auth()->user()->hasRole('Parents')) {
+            return $query->where('classroom_id', auth()->user()->child->classroom_id);
+        } else {
+            return $query;
+        }
     }
 }

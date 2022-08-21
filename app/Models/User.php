@@ -89,4 +89,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Timetable::class);
     }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function childs()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

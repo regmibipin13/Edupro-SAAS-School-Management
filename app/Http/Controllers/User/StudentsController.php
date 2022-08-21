@@ -86,7 +86,7 @@ class StudentsController extends Controller
      */
     public function edit(Student $student)
     {
-        if (!hasRole(['School Admin', 'Teachers'])) {
+        if (!hasRole(['School Admin'])) {
             return abort(403);
         }
         $classes = Classroom::with('sections')->get();

@@ -25,6 +25,8 @@ Vue.component('admit-student-edit',require('./components/AdmitStudentEdit.vue').
 Vue.component('marks-entry', require('./components/MarksEntry.vue').default);
 Vue.component('attendance-lists', require('./components/AttendanceList.vue').default);
 Vue.component('attendance-create', require('./components/AttendanceCreate.vue').default);
+Vue.component('timetable', require('./components/Timetable.vue').default);
+Vue.component('timetable-show', require('./components/TimetableShow.vue').default);
 
 
 

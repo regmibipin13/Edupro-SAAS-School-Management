@@ -29,6 +29,27 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
+
+                    <a class="nav-link" type="button" id="dropdownMenuButton0" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
+                        bis_skin_checked="1"aria-labelledby="dropdownMenuButton0">
+                        <span class="dropdown-item dropdown-header">15 Notifications Demo</span>
+                        <div class="dropdown-divider" bis_skin_checked="1"></div>
+                        <div class="dropdown-divider" bis_skin_checked="1"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider" bis_skin_checked="1"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
