@@ -20,16 +20,16 @@ class TimetablesController extends Controller
      */
     public function index(Request $request, CalenderService $calenderService)
     {
-        return "Comming Soon";
+        // return "Comming Soon";
         $timetables = Timetable::filters($request)->get();
         if ($request->ajax()) {
             return $timetables;
         }
         $classrooms = Classroom::all();
         $days = collect(Day::all())->map->name->toArray();
-        $calenderData = $calenderService->generateCalenderData($days);
-        dd($calenderData);
-        return view('user.timetables.index', compact('timetables', 'classrooms', 'days', 'times'));
+
+        // dd($timetables);
+        return view('user.timetables.index', compact('timetables', 'classrooms', 'days'));
     }
 
     /**

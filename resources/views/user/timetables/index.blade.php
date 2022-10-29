@@ -37,7 +37,36 @@
 
                 <div class="col-md-12 mt-3">
                     <table class="table table-striped table-bordered">
-
+                        <tr>
+                            <th>
+                                Time
+                            </th>
+                            <th>
+                                Subject
+                            </th>
+                            <th>
+                                Teacher
+                            </th>
+                        </tr>
+                        @if (request()->has('classroom_id') && request()->has('section_id'))
+                            @foreach ($timetables as $t)
+                                <tr>
+                                    <td>
+                                        {{ $t->time->time_from }} - {{ $t->time->time_to }}
+                                    </td>
+                                    <td>
+                                        {{ $t->subject->name }}
+                                    </td>
+                                    <td>
+                                        {{ $t->teacher->name }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="3" class="text-center">Please select class and section first</td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
             </div>
