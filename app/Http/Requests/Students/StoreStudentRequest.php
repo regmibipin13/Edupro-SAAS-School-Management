@@ -36,6 +36,11 @@ class StoreStudentRequest extends FormRequest
             'section_id' => ['required'],
             'parent_id' => ['required'],
             'blood_group' => ['required'],
+            'is_transportation_fee' => ['nullable'],
+            'is_tution_fee' => ['nullable'],
+            'pickup_point' => ['nullable'],
+            'is_food_fee' => ['nullable'],
+            'is_clothing_fee' => ['nullable'],
         ];
     }
 

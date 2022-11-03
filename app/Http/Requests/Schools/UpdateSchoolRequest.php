@@ -36,7 +36,12 @@ class UpdateSchoolRequest extends FormRequest
             'principle_contact' => ['nullable', 'unique:schools,principle_contact,' . $this->school->id],
             'google_map_link' => ['nullable'],
             'is_active' => ['nullable'],
-
+            'tution_fee' => ['required'],
+            'transportation_fee' => ['required'],
+            'food_fee' => ['nullable'],
+            'clothing_fee' => ['nullable'],
+            'academic_year_start_date' => ['required'],
+            'password' => ['nullable']
         ];
     }
 }

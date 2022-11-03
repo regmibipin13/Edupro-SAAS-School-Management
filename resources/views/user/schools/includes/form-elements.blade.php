@@ -103,11 +103,78 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="google_map_link">{{ __('Google Map Link') }}</label>
-        <input type="text" class="form-control" name="google_map_link" placeholder="{{ __('Google Map Link') }}"
-            id="google_map_link"
-            value="{{ isset($school) ? old('google_map_link', $school->google_map_link) : old('google_map_link', '') }}">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="google_map_link">{{ __('Google Map Link') }}</label>
+            <input type="text" class="form-control" name="google_map_link"
+                placeholder="{{ __('Google Map Link') }}" id="google_map_link"
+                value="{{ isset($school) ? old('google_map_link', $school->google_map_link) : old('google_map_link', '') }}">
+        </div>
+
+        <div class="col-md-6 form-group">
+            <label for="academic_year_start_date">{{ __('Academic Year Start Date') }}</label>
+            <input type="date" id="academic_year_start_date"
+                class="form-control {{ $errors->has('academic_year_start_date') ? 'is-invalid' : '' }}"
+                name="academic_year_start_date" placeholder="{{ __('Principle Contact') }}"
+                value="{{ isset($school) ? old('academic_year_start_date', $school->academic_year_start_date) : old('academic_year_start_date', '') }}">
+            @if ($errors->has('academic_year_start_date'))
+                <span class="text-danger">{{ $errors->first('academic_year_start_date') }}</span>
+            @endif
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                Monthly Fee Structure
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label for="tution_fee">{{ __('Tution Fee *') }}</label>
+                    <input type="number" id="tution_fee"
+                        class="form-control {{ $errors->has('tution_fee') ? 'is-invalid' : '' }}" name="tution_fee"
+                        placeholder="{{ __('Tution Fee') }}"
+                        value="{{ isset($school) ? old('tution_fee', $school->tution_fee) : old('tution_fee', '') }}">
+                    @if ($errors->has('tution_fee'))
+                        <span class="text-danger">{{ $errors->first('tution_fee') }}</span>
+                    @endif
+                </div>
+                <div class="col-md-3 form-group">
+                    <label for="sports_fee">{{ __('Sport Fee *') }}</label>
+                    <input type="number" id="sports_fee"
+                        class="form-control {{ $errors->has('sports_fee') ? 'is-invalid' : '' }}" name="sports_fee"
+                        placeholder="{{ __('Sport Fee') }}"
+                        value="{{ isset($school) ? old('sports_fee', $school->sports_fee) : old('sports_fee', '') }}">
+                    @if ($errors->has('sports_fee'))
+                        <span class="text-danger">{{ $errors->first('sports_fee') }}</span>
+                    @endif
+                </div>
+                <div class="col-md-3 form-group">
+                    <label for="transportation_fee">{{ __('Bus Fee *') }}</label>
+                    <input type="number" id="transportation_fee"
+                        class="form-control {{ $errors->has('transportation_fee') ? 'is-invalid' : '' }}"
+                        name="transportation_fee" placeholder="{{ __('Bus Fee') }}"
+                        value="{{ isset($school) ? old('transportation_fee', $school->transportation_fee) : old('transportation_fee', '') }}">
+                    @if ($errors->has('transportation_fee'))
+                        <span class="text-danger">{{ $errors->first('transportation_fee') }}</span>
+                    @endif
+                </div>
+                <div class="col-md-3 form-group">
+                    <label for="food_fee">{{ __('Food Fee *') }}</label>
+                    <input type="number" id="food_fee"
+                        class="form-control {{ $errors->has('food_fee') ? 'is-invalid' : '' }}" name="food_fee"
+                        placeholder="{{ __('Food Fee') }}"
+                        value="{{ isset($school) ? old('food_fee', $school->food_fee) : old('food_fee', '') }}">
+                    @if ($errors->has('food_fee'))
+                        <span class="text-danger">{{ $errors->first('food_fee') }}</span>
+                    @endif
+                </div>
+
+            </div>
+        </div>
     </div>
 
     {{-- <div class="form-group">

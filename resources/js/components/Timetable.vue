@@ -15,9 +15,19 @@ export default {
             section_id:'',
             subjects:[],
             changed:false,
+            timeOptions:[],
         };
     },
     methods:{
+        timeChange(time, index) {
+            this.times[index] = time;
+        },
+        addTimetable() {
+            this.times.push({});
+        },
+        removeTimetable(index) {
+            this.times.splice(index, 1);
+        },
         next() {
             if(this.classroom_id == '' || this.section_id == '') {
                 Vue.$toast.error('Please enter class and section');
@@ -77,9 +87,27 @@ export default {
         },
     },
     mounted() {
-        this.times = this.timeLists;
+        // this.times = this.timeLists;
+        this.timeOptions = this.timeLists;
         this.classroom_id = this.request.classroom_id;
         this.section_id = this.request.section_id
+
+        var time;
+        var _this = this;
+        axios.get('/timetables',{
+            params:{
+                classroom_id:this.classroom_id,
+                section_id:this.section_id
+            }
+        }).then((response) => {
+            if(response.data.length > 0) {
+                response.data.forEach(function(t){
+                    _this.times.push(t.time);
+                });
+            }
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 }
 </script>

@@ -39,6 +39,10 @@
                     @if (request()->has('classroom_id') && request()->has('section_id'))
                         <div class="col-md-12 mt-3">
                             <div class="card">
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-success" @click="addTimetable">Add Timetable
+                                        +</button>
+                                </div>
                                 <div class="card-body">
                                     <table class="table table-bordered table-striped">
                                         <thead>
@@ -47,12 +51,18 @@
                                                 <th>Subject</th>
                                                 <th>Days</th>
                                                 <th>Teacher</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="(time, index) in times">
                                                 <td>
-                                                    @{{ time.time_from }} - @{{ time.time_to }}
+                                                    {{-- @{{ time.time_from }} - @{{ time.time_to }} --}}
+                                                    <select class="form-control" v-model="times[index]">
+                                                        <option :value="time" v-for="(time, index) in timeOptions">
+                                                            @{{ time.time_from }} - @{{ time.time_to }}
+                                                        </option>
+                                                    </select>
                                                 </td>
                                                 <td>
                                                     <select v-model="times[index].subject_id" class="form-control">
@@ -73,6 +83,10 @@
                                                         :close-on-select="false" :show-labels="true" track-by="id"
                                                         label="name" placeholder="Pick Teacher">
                                                     </multiselect>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-danger" type="button"
+                                                        @click.prevent="removeTimetable(index)">Delete</button>
                                                 </td>
                                             </tr>
                                         </tbody>

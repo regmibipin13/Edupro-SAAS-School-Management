@@ -56,6 +56,8 @@ namespace App\Models{
  * @property int $school_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property float $monthly_fee
+ * @property float|null $extra_tution_fee
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Attendance[] $attendances
  * @property-read int|null $attendances_count
  * @property-read \App\Models\School $school
@@ -72,8 +74,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom query()
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereExtraTutionFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereMonthlyFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereSchoolId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classroom whereUpdatedAt($value)
@@ -132,6 +136,54 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Exam whereUpdatedAt($value)
  */
 	class Exam extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\FeePayment
+ *
+ * @property int $id
+ * @property int $school_id
+ * @property int $student_id
+ * @property float $regular_fee
+ * @property float $tution_fee
+ * @property float|null $sports_fee
+ * @property float|null $transportation_fee
+ * @property float|null $food_fee
+ * @property float|null $clothing_fee
+ * @property float|null $other_payments
+ * @property string|null $description
+ * @property string $payment_untill
+ * @property \Illuminate\Support\Carbon $paid_date
+ * @property string $payment_method
+ * @property string|null $payment_description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\School $school
+ * @property-read \App\Models\Student $student
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment filters($request)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereClothingFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereFoodFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereOtherPayments($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment wherePaidDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment wherePaymentDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment wherePaymentMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment wherePaymentUntill($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereRegularFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereSchoolId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereSportsFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereStudentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereTransportationFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereTutionFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FeePayment whereUpdatedAt($value)
+ */
+	class FeePayment extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -230,15 +282,24 @@ namespace App\Models{
  * @property string $is_active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property float|null $tution_fee
+ * @property float|null $sports_fee
+ * @property float|null $transportation_fee
+ * @property float|null $food_fee
+ * @property float|null $clothing_fee
+ * @property string|null $academic_year_start_date
  * @method static \Illuminate\Database\Eloquent\Builder|School filters($request)
  * @method static \Illuminate\Database\Eloquent\Builder|School newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|School newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|School query()
+ * @method static \Illuminate\Database\Eloquent\Builder|School whereAcademicYearStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|School whereClothingFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereContact($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|School whereFoodFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereGoogleMapLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereIsActive($value)
@@ -248,6 +309,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|School whereOwnerName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School wherePrincipleContact($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School wherePrincipleName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|School whereSportsFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|School whereTransportationFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|School whereTutionFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereUpdatedAt($value)
  */
 	class School extends \Eloquent {}
@@ -303,9 +367,16 @@ namespace App\Models{
  * @property string $blood_group
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $is_transportation_fee
+ * @property int $is_tution_fee
+ * @property string|null $pickup_point
+ * @property int $is_food_fee
+ * @property int $is_clothing_fee
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Attendance[] $attendances
  * @property-read int|null $attendances_count
  * @property-read \App\Models\Classroom $classroom
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FeePayment[] $fee_payments
+ * @property-read int|null $fee_payments_count
  * @property-read mixed $absent_reason
  * @property-read mixed $attendance
  * @property-read mixed $total_marks
@@ -324,7 +395,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereClassroomId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereIsClothingFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereIsFoodFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereIsTransportationFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereIsTutionFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student wherePickupPoint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereSchoolId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereSectionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereUniqueStudentId($value)

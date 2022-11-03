@@ -5,10 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\Day;
+use App\Models\Section;
 use App\Models\Time;
 use App\Models\Timetable;
 use App\Models\User;
-use App\Services\CalenderService;
 use Illuminate\Http\Request;
 
 class TimetablesController extends Controller
@@ -18,17 +18,17 @@ class TimetablesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, CalenderService $calenderService)
+    public function index(Request $request)
     {
-        // return "Comming Soon";
-        $timetables = Timetable::filters($request)->get();
+        $timetables = Timetable::with(['time', 'days'])->filters($request)->get();
+
         if ($request->ajax()) {
-            return $timetables;
+            return response()->json(Timetable::with(['time'])->filters($request)->get());
         }
+        // dd($timetables);
         $classrooms = Classroom::all();
         $days = collect(Day::all())->map->name->toArray();
 
-        // dd($timetables);
         return view('user.timetables.index', compact('timetables', 'classrooms', 'days'));
     }
 
@@ -54,7 +54,7 @@ class TimetablesController extends Controller
      */
     public function store(Request $request)
     {
-
+        Timetable::where('classroom_id', $request->classroom_id)->where('section_id', $request->section_id)->delete();
         foreach ($request->times as $time) {
             if ($request->classroom_id !== null && $request->section_id !== null && (isset($time['subject_id']) && $time['subject_id'] !== null) && (isset($time['days']) && $time['days'] !== null) && (isset($time['teacher_id']) && $time['teacher_id'] !== null)) {
                 $data = [];
@@ -123,5 +123,28 @@ class TimetablesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pdf(Request $request)
+    {
+        $timetables = Timetable::filters($request)->get();
+        if ($request->ajax()) {
+            return $timetables;
+        }
+        $classroom = Classroom::find($request->classroom_id)->name;
+        $section = Section::find($request->section_id)->name;
+
+        $data = [];
+        $data['timetables'] = $timetables;
+        $data['classroom'] = $classroom;
+        $data['section'] = $section;
+
+        return view('user.timetables.pdf', ['data' => $data]);
+    }
+
+    public function allPdf()
+    {
+        $timetables = Timetable::groupBy('section_id')->get();
+        dd($timetables);
     }
 }

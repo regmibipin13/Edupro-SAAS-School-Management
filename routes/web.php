@@ -4,10 +4,12 @@ use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\User\AttendancesController;
 use App\Http\Controllers\User\ClassroomsController;
 use App\Http\Controllers\User\DaysController;
 use App\Http\Controllers\User\ExamController;
+use App\Http\Controllers\User\FeePaymentsController;
 use App\Http\Controllers\User\GradesController;
 use App\Http\Controllers\User\MarksController;
 use App\Http\Controllers\User\MarksheetController;
@@ -31,8 +33,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->to('/login');
+    return view('frontend.home');
 });
+
+Route::get('/home', function () {
+    return redirect()->to('/dashboard');
+});
+
+Route::get('/school-registration', [FrontendController::class, 'register']);
+Route::post('/school-registration', [FrontendController::class, 'postRegister'])->name('schools.register');
+Route::get('/pay/success', [FrontendController::class, 'success']);
+Route::get('/pay/error', [FrontendController::class, 'error']);
 
 Auth::routes();
 
@@ -51,6 +62,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'is_admin'], 'prefix' =
     Route::resource('users', UsersController::class);
 
     // Schools
+    Route::get('schools/login/{school}', [SchoolsController::class, 'login'])->name('schools.login');
     Route::resource('schools', SchoolsController::class);
 });
 
@@ -106,7 +118,16 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
     Route::resource('times', TimesController::class);
 
     // Timetables
+    Route::get('timetables/pdf', [TimetablesController::class, 'pdf'])->name('timetables.pdf');
+    Route::get('timetables/all', [TimetablesController::class, 'allPdf'])->name('timetables.allpdf');
     Route::resource('timetables', TimetablesController::class);
+
+    // Fee Payments
+    Route::get('fees/pending', [FeePaymentsController::class, 'pending']);
+    Route::get('fees/{feeId}/pdf', [FeePaymentsController::class, 'generatePDF'])->name('fees.pdf');
+    Route::get('fees/export', [FeePaymentsController::class, 'export'])->name('fees.export');
+    Route::resource('fees', FeePaymentsController::class);
+    Route::post('pay/fee', [FeePaymentsController::class, 'pay']);
 });
 
 Route::middleware('auth')->group(function () {

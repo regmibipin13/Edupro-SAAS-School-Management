@@ -25,7 +25,8 @@ class HomeController extends Controller
      */
     public function adminIndex()
     {
-        return view('admin.dashboard');
+        $attendances = Attendance::whereDate('created_at', Carbon::now())->get()->groupBy('classroom_id');
+        return view('admin.dashboard', compact('attendances'));
     }
 
     public function userIndex()

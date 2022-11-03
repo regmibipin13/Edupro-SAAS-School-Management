@@ -22,7 +22,11 @@ export default {
                 classroom_id:'',
                 section_id:'',
                 parent_id:'',
-                blood_group:''
+                blood_group:'',
+                is_transportation_fee:0,
+                is_tution_fee:0,
+                pickup_point:'',
+                is_food_fee:0,
             },
             section:'',
             classroom:'',
@@ -43,7 +47,7 @@ export default {
                     loader.hide();
                     Vue.$toast.success('Student Updated Successfully');
                     // this.resetValues();
-                    
+
                 }
             }).catch((error) => {
                 this.errors = error.response.data.errors;
@@ -84,6 +88,10 @@ export default {
             this.form.dob = this.student.user.dob;
             this.form.admitted_date = this.student.admitted_date;
             this.form.blood_group = this.student.blood_group;
+            this.form.is_transportation_fee = this.student.is_transportation_fee;
+            this.form.is_food_fee = this.student.is_food_fee;
+            this.form.is_tution_fee = this.student.is_tution_fee;
+            this.form.pickup_point = this.student.pickup_point;
             this.classroom = this.student.classroom;
             this.section = this.student.section;
             this.parent = this.student.parent;

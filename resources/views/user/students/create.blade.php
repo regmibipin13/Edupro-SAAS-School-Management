@@ -91,6 +91,7 @@
                                             @{{ errors.admitted_date[0] }}
                                         </p>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -178,6 +179,34 @@
                                     <p class="text-danger">{{ $errors->first('uniqueStudentId') }}</p>
                                 @endif
                             </div> --}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Student Fee Information</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="is_transportation_fee">Transportation Fee</label>
+                                        <input type="checkbox" v-model="form.is_transportation_fee">
+                                    </div>
+                                    {{-- <div class="form-group col-md-2">
+                                        <label for="is_tution_fee">Extra Tution Fee</label>
+                                        <input type="checkbox" v-model="form.is_tution_fee">
+                                    </div> --}}
+                                    <div class="form-group col-md-4" v-if="form.is_transportation_fee">
+                                        <label for="pickup_point">Pickup Point</label>
+                                        <input type="text" class="form-control" placeholder="Pickup Point Address"
+                                            v-model="form.pickup_point">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="is_food_fee">Food and Meals Fee</label>
+                                        <input type="checkbox" v-model="form.is_food_fee">
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

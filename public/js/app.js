@@ -5285,7 +5285,11 @@ __webpack_require__.r(__webpack_exports__);
         classroom_id: '',
         section_id: '',
         parent_id: '',
-        blood_group: ''
+        blood_group: '',
+        is_transportation_fee: 0,
+        is_tution_fee: 0,
+        pickup_point: '',
+        is_food_fee: 0
       },
       section: '',
       classroom: '',
@@ -5328,7 +5332,11 @@ __webpack_require__.r(__webpack_exports__);
         classroom_id: '',
         section_id: '',
         parent_id: '',
-        blood_group: ''
+        blood_group: '',
+        is_transportation_fee: 0,
+        is_tution_fee: 0,
+        pickup_point: '',
+        is_food_fee: 0
       };
       this.section = '';
       this.classroom = '';
@@ -5369,6 +5377,10 @@ __webpack_require__.r(__webpack_exports__);
       this.form.dob = this.student.user.dob;
       this.form.admitted_date = this.student.admitted_date;
       this.form.blood_group = this.student.blood_group;
+      this.form.is_transportation_fee = this.student.is_transportation_fee;
+      this.form.is_food_fee = this.student.is_food_fee;
+      this.form.is_tution_fee = this.student.is_tution_fee;
+      this.form.pickup_point = this.student.pickup_point;
       this.classroom = this.student.classroom;
       this.section = this.student.section;
       this.parent = this.student.parent;
@@ -5408,7 +5420,11 @@ __webpack_require__.r(__webpack_exports__);
         classroom_id: '',
         section_id: '',
         parent_id: '',
-        blood_group: ''
+        blood_group: '',
+        is_transportation_fee: 0,
+        is_tution_fee: 0,
+        pickup_point: '',
+        is_food_fee: 0
       },
       section: '',
       classroom: '',
@@ -5468,6 +5484,10 @@ __webpack_require__.r(__webpack_exports__);
       this.form.dob = this.student.user.dob;
       this.form.admitted_date = this.student.admitted_date;
       this.form.blood_group = this.student.blood_group;
+      this.form.is_transportation_fee = this.student.is_transportation_fee;
+      this.form.is_food_fee = this.student.is_food_fee;
+      this.form.is_tution_fee = this.student.is_tution_fee;
+      this.form.pickup_point = this.student.pickup_point;
       this.classroom = this.student.classroom;
       this.section = this.student.section;
       this.parent = this.student.parent;
@@ -5584,6 +5604,127 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Fee.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Fee.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['classrooms'],
+  data: function data() {
+    return {
+      classroom_id: '',
+      section_id: '',
+      student_id: '',
+      sections: [],
+      pending_fee: '',
+      payment_untill: '',
+      other_payments: 0,
+      payment_method: '',
+      description: ''
+    };
+  },
+  computed: {
+    total: function total() {
+      var _ref, _ref2, _this$pending_fee$mon;
+
+      return (_ref = (_ref2 = (_this$pending_fee$mon = this.pending_fee.monthly_fee) !== null && _this$pending_fee$mon !== void 0 ? _this$pending_fee$mon : 0 + this.pending_fee.transportationFee) !== null && _ref2 !== void 0 ? _ref2 : 0 + this.pending_fee.foodFee) !== null && _ref !== void 0 ? _ref : 0;
+    },
+    grandTotal: function grandTotal() {
+      return parseFloat(this.total) + parseFloat(this.other_payments);
+    }
+  },
+  watch: {
+    classroom_id: function classroom_id() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/fees/create', {
+        params: {
+          classroom_id: this.classroom_id
+        }
+      }).then(function (response) {
+        _this.sections = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  methods: {
+    search: function search() {
+      var _this2 = this;
+
+      if (this.student_id == null || this.student_id == '') {
+        Vue.$toast.error('Student Id should be entered');
+        return;
+      }
+
+      var loader = this.$loading.show({
+        container: this.$refs.formContainer,
+        canCancel: false
+      });
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/fees/pending', {
+        params: {
+          student_id: this.student_id
+        }
+      }).then(function (response) {
+        _this2.pending_fee = response.data;
+        loader.hide();
+      })["catch"](function (error) {
+        console.log(error);
+        loader.hide();
+      });
+    },
+    pay: function pay() {
+      // if(this.other_payments == null || this.other_payments == '') {
+      //     Vue.$toast.error('Min value for other payments is 0')
+      //     return;
+      // }
+      if (this.payment_untill == null || this.payment_untill == '') {
+        Vue.$toast.error('Payment untill is required');
+        return;
+      }
+
+      if (this.payment_method == null || this.payment_method == '') {
+        Vue.$toast.error('Payment method is required');
+        return;
+      }
+
+      var loader = this.$loading.show({
+        container: this.$refs.formContainer,
+        canCancel: false
+      });
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/pay/fee', {
+        student_id: this.student_id,
+        regular_fee: this.pending_fee.monthly_fee,
+        transportation_fee: this.pending_fee.transportationFee,
+        food_fee: this.pending_fee.foodFee,
+        other_payements: this.other_payments,
+        payment_untill: this.payment_untill,
+        description: this.description,
+        payment_method: this.payment_method
+      }).then(function (response) {
+        Vue.$toast.success('Fee Payment Completed Successfully');
+        window.location.href = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+        Vue.$toast.error('Something went wrong please try again');
+        loader.hide();
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MarksEntry.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MarksEntry.vue?vue&type=script&lang=js& ***!
@@ -5652,10 +5793,20 @@ __webpack_require__.r(__webpack_exports__);
       classroom_id: '',
       section_id: '',
       subjects: [],
-      changed: false
+      changed: false,
+      timeOptions: []
     };
   },
   methods: {
+    timeChange: function timeChange(time, index) {
+      this.times[index] = time;
+    },
+    addTimetable: function addTimetable() {
+      this.times.push({});
+    },
+    removeTimetable: function removeTimetable(index) {
+      this.times.splice(index, 1);
+    },
     next: function next() {
       if (this.classroom_id == '' || this.section_id == '') {
         Vue.$toast.error('Please enter class and section');
@@ -5712,9 +5863,28 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.times = this.timeLists;
+    // this.times = this.timeLists;
+    this.timeOptions = this.timeLists;
     this.classroom_id = this.request.classroom_id;
     this.section_id = this.request.section_id;
+    var time;
+
+    var _this = this;
+
+    axios.get('/timetables', {
+      params: {
+        classroom_id: this.classroom_id,
+        section_id: this.section_id
+      }
+    }).then(function (response) {
+      if (response.data.length > 0) {
+        response.data.forEach(function (t) {
+          _this.times.push(t.time);
+        });
+      }
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -5858,6 +6028,31 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Fee.vue?vue&type=template&id=48f21f2a&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Fee.vue?vue&type=template&id=48f21f2a& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div");
+};
+
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MarksEntry.vue?vue&type=template&id=51747112&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MarksEntry.vue?vue&type=template&id=51747112& ***!
@@ -5971,6 +6166,7 @@ Vue.component('attendance-lists', (__webpack_require__(/*! ./components/Attendan
 Vue.component('attendance-create', (__webpack_require__(/*! ./components/AttendanceCreate.vue */ "./resources/js/components/AttendanceCreate.vue")["default"]));
 Vue.component('timetable', (__webpack_require__(/*! ./components/Timetable.vue */ "./resources/js/components/Timetable.vue")["default"]));
 Vue.component('timetable-show', (__webpack_require__(/*! ./components/TimetableShow.vue */ "./resources/js/components/TimetableShow.vue")["default"]));
+Vue.component('fee', (__webpack_require__(/*! ./components/Fee.vue */ "./resources/js/components/Fee.vue")["default"]));
 var app = new Vue({
   el: '#app'
 }); // Some jQuery Scripts here
@@ -40096,6 +40292,45 @@ component.options.__file = "resources/js/components/AttendanceList.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Fee.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Fee.vue ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Fee_vue_vue_type_template_id_48f21f2a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Fee.vue?vue&type=template&id=48f21f2a& */ "./resources/js/components/Fee.vue?vue&type=template&id=48f21f2a&");
+/* harmony import */ var _Fee_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Fee.vue?vue&type=script&lang=js& */ "./resources/js/components/Fee.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Fee_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Fee_vue_vue_type_template_id_48f21f2a___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Fee_vue_vue_type_template_id_48f21f2a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Fee.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/MarksEntry.vue":
 /*!************************************************!*\
   !*** ./resources/js/components/MarksEntry.vue ***!
@@ -40277,6 +40512,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Fee.vue?vue&type=script&lang=js&":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Fee.vue?vue&type=script&lang=js& ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Fee_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Fee.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Fee.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Fee_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/MarksEntry.vue?vue&type=script&lang=js&":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/MarksEntry.vue?vue&type=script&lang=js& ***!
@@ -40389,6 +40640,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AttendanceList_vue_vue_type_template_id_410eead2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AttendanceList_vue_vue_type_template_id_410eead2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AttendanceList.vue?vue&type=template&id=410eead2& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/AttendanceList.vue?vue&type=template&id=410eead2&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Fee.vue?vue&type=template&id=48f21f2a&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/Fee.vue?vue&type=template&id=48f21f2a& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Fee_vue_vue_type_template_id_48f21f2a___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Fee_vue_vue_type_template_id_48f21f2a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Fee_vue_vue_type_template_id_48f21f2a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Fee.vue?vue&type=template&id=48f21f2a& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Fee.vue?vue&type=template&id=48f21f2a&");
 
 
 /***/ }),

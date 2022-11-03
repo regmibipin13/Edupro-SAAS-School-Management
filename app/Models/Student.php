@@ -58,6 +58,10 @@ class Student extends Model
         return $this->hasMany(Attendance::class);
     }
 
+    public function fee_payments() {
+        return $this->hasMany(FeePayment::class);
+    }
+
     public function getMarks($examID, $subjectID)
     {
         $mark = $this->marks()->where('exam_id', $examID)->where('subject_id', $subjectID)->first();

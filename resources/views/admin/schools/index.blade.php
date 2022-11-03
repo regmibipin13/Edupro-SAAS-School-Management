@@ -63,6 +63,9 @@
                                                     <button type="submit" class="btn btn-sm btn-danger"
                                                         onclick="return confirm('Are you sure ?')">Delete</button>
                                                 </form>
+
+                                                <a href="{{ route('admin.schools.login', $school->id) }}"
+                                                    class="btn btn-info btn-sm ml-2">Login</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -34,7 +34,15 @@
                         </div>
                     </timetable-show>
                 </div>
-
+                @if (request()->has('classroom_id') && request()->has('section_id'))
+                    <div class="col-md-12 mt-3 mb-2">
+                        <form action="{{ route('user.timetables.pdf') }}" method="GET">
+                            <input type="hidden" name="classroom_id" value="{{ request()->classroom_id }}">
+                            <input type="hidden" name="section_id" value="{{ request()->section_id }}">
+                            <button type="submit" class="btn btn-success">View Routine</button>
+                        </form>
+                    </div>
+                @endif
                 <div class="col-md-12 mt-3">
                     <table class="table table-striped table-bordered">
                         <tr>
@@ -46,6 +54,9 @@
                             </th>
                             <th>
                                 Teacher
+                            </th>
+                            <th>
+                                Days
                             </th>
                         </tr>
                         @if (request()->has('classroom_id') && request()->has('section_id'))
@@ -59,6 +70,11 @@
                                     </td>
                                     <td>
                                         {{ $t->teacher->name }}
+                                    </td>
+                                    <td>
+                                        @foreach ($t->days as $day)
+                                            <span class="badge badge-secondary">{{ $day->name }}</span>
+                                        @endforeach
                                     </td>
                                 </tr>
                             @endforeach

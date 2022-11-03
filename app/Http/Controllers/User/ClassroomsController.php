@@ -44,6 +44,7 @@ class ClassroomsController extends Controller
         $sanitized = $request->validate([
             'name' => ['required'],
             'location' => ['nullable'],
+            'monthly_fee' => ['required'],
         ]);
         Classroom::create($sanitized);
         return redirect()->back()->with('success', 'Class Created Successfully');
@@ -83,6 +84,7 @@ class ClassroomsController extends Controller
         $sanitized = $request->validate([
             'name' => ['required'],
             'location' => ['nullable'],
+            'monthly_fee' => ['required'],
         ]);
         $classroom->update($sanitized);
         return redirect()->back()->with('success', 'Classroom Updated Successfully');
@@ -102,11 +104,11 @@ class ClassroomsController extends Controller
 
     public function getSections($classroom_id)
     {
-      return Section::where('classroom_id',$classroom_id)->get();
+        return Section::where('classroom_id', $classroom_id)->get();
     }
 
     public function getSubjects($classroom_id)
     {
-      return Subject::where('classroom_id',$classroom_id)->get();
+        return Subject::where('classroom_id', $classroom_id)->get();
     }
 }

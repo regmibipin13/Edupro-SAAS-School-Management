@@ -6,10 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Schools\StoreSchoolRequest;
 use App\Http\Requests\Schools\UpdateSchoolRequest;
 use App\Models\School;
+use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class SchoolsController extends Controller
 {
+    public function login(School $school)
+    {
+        $user = User::where('school_id', $school->id)->whereHas('roles', function ($role) {
+            $role->where('name', 'School Admin');
+        })->first();
+
+        Auth::loginUsingId($user->id, true);
+        return redirect()->to('/dashboard');
+    }
     /**
      * Display a listing of the resource.
      *

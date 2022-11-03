@@ -32,6 +32,14 @@
                                             value="{{ isset($class) ? old('name', $class->name) : old('name', '') }}">
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="name">{{ __('Monthly Fee') }}</label>
+                                        <input type="number" id="monthly_fee"
+                                            class="form-control {{ $errors->has('monthly_fee') ? 'is-invalid' : '' }}"
+                                            name="monthly_fee"
+                                            value="{{ isset($class) ? old('monthly_fee', $class->name) : old('monthly_fee', '') }}">
+                                    </div>
+
                                     <button class="btn btn-success">Save</button>
                                     <a class="btn btn-danger" href="{{ route('user.classrooms.index') }}">Reset</a>
 
@@ -56,6 +64,7 @@
                                     <tr>
                                         <th>Class Name</th>
                                         <th>Class Location</th>
+                                        <th>Class Monthly Fee</th>
                                         <th>School</th>
                                         <th>Actions</th>
                                     </tr>
@@ -65,6 +74,7 @@
                                         <tr>
                                             <td>{{ $class->name }}</td>
                                             <td>{{ $class->location }}</td>
+                                            <td>{{ $class->monthly_fee }}</td>
                                             <td>{{ $class->school->name }}</td>
 
                                             <td>
@@ -110,6 +120,7 @@
         $('.card-title').text("Edit Class")
         $('#name').val(classroom.name);
         $('#location').val(classroom.location);
+        $('#monthly_fee').val(classroom.monthly_fee);
         $('form').append("<input type='hidden' name='_method' value='PATCH' id='patch-method'>")
         var route = '/classrooms/' + classroom.id;
         $('form').attr("action", route);

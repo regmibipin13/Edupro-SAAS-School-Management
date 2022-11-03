@@ -27,6 +27,7 @@ Vue.component('attendance-lists', require('./components/AttendanceList.vue').def
 Vue.component('attendance-create', require('./components/AttendanceCreate.vue').default);
 Vue.component('timetable', require('./components/Timetable.vue').default);
 Vue.component('timetable-show', require('./components/TimetableShow.vue').default);
+Vue.component('fee', require('./components/Fee.vue').default);
 
 
 
