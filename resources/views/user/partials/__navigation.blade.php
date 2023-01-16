@@ -19,7 +19,7 @@
                     </p>
                 </a>
             </li>
-            @if (hasRole('School Admin'))
+            @can('users_access')
                 <li class="nav-item">
                     <a href="{{ route('user.users.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
@@ -28,52 +28,59 @@
                         </p>
                     </a>
                 </li>
-            @endif
-            <li class="nav-item">
-                <a href="{{ route('user.schools.edit', Auth::user()->school_id) }}" class="nav-link">
-                    <i class="nav-icon fas fa-school"></i>
-                    <p>
-                        {{ __('My School Details') }}
-                    </p>
-                </a>
-            </li>
+            @endcan
 
-            <li class="nav-item">
-                <a href="{{ route('user.classrooms.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-circle nav-icon"></i>
-                    <p>
-                        {{ __('Classrooms') }}
-                    </p>
-                </a>
-            </li>
+            @can('school_details_access')
+                <li class="nav-item">
+                    <a href="{{ route('user.schools.edit', Auth::user()->school_id) }}" class="nav-link">
+                        <i class="nav-icon fas fa-school"></i>
+                        <p>
+                            {{ __('My School Details') }}
+                        </p>
+                    </a>
+                </li>
+            @endcan
 
-            <li class="nav-item">
-                <a href="{{ route('user.sections.index') }}" class="nav-link">
-                    <i class="nav-icon far fa-circle nav-icon"></i>
-                    <p>
-                        {{ __('Sections') }}
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('user.subjects.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        {{ __('Subjects') }}
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('user.fees.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                        {{ __('Fees Management') }}
-                    </p>
-                </a>
-            </li>
-
+            @can('classrooms_access')
+                <li class="nav-item">
+                    <a href="{{ route('user.classrooms.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-circle nav-icon"></i>
+                        <p>
+                            {{ __('Classrooms') }}
+                        </p>
+                    </a>
+                </li>
+            @endcan
+            @can('sections_access')
+                <li class="nav-item">
+                    <a href="{{ route('user.sections.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-circle nav-icon"></i>
+                        <p>
+                            {{ __('Sections') }}
+                        </p>
+                    </a>
+                </li>
+            @endcan
+            @can('subjects_access')
+                <li class="nav-item">
+                    <a href="{{ route('user.subjects.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            {{ __('Subjects') }}
+                        </p>
+                    </a>
+                </li>
+            @endcan
+            @can('fee_management_access')
+                <li class="nav-item">
+                    <a href="{{ route('user.fees.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            {{ __('Fees Management') }}
+                        </p>
+                    </a>
+                </li>
+            @endcan
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
@@ -83,35 +90,41 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
-                        <a href="{{ route('user.exams.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Exams') }}</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('user.grades.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Grades') }}</p>
-                        </a>
-                    </li>
-                    @if (hasRole(['School Admin', 'Teachers']))
+                    @can('exams_access')
+                        <li class="nav-item">
+                            <a href="{{ route('user.exams.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Exams') }}</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('grades_access')
+                        <li class="nav-item">
+                            <a href="{{ route('user.grades.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Grades') }}</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('marks_access')
                         <li class="nav-item">
                             <a href="{{ route('user.marks.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('Marks') }}</p>
                             </a>
                         </li>
-                    @endif
-                    <li class="nav-item">
-                        <a href="{{ route('user.marksheets.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ __('Marksheet') }}</p>
-                        </a>
-                    </li>
+                    @endcan
+                    @can('marksheet_access')
+                        <li class="nav-item">
+                            <a href="{{ route('user.marksheets.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('Marksheet') }}</p>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
-            @if (hasRole(['School Admin', 'Teachers']))
+            @can('routine_access')
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-circle nav-icon"></i>
@@ -150,7 +163,7 @@
                         @endif
                     </ul>
                 </li>
-            @endif
+            @endcan
             @if (hasRole(['School Admin', 'Teachers']))
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -162,38 +175,38 @@
                     </a>
 
                     <ul class="nav nav-treeview" style="display: none;">
-                        @if (hasRole('School Admin'))
+                        @can('students_admit_access')
                             <li class="nav-item">
                                 <a href="{{ route('user.students.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Admit Student') }}</p>
                                 </a>
                             </li>
-                        @endif
-                        @if (hasRole(['School Admin', 'Teachers']))
+                        @endcan
+                        @can('students_access')
                             <li class="nav-item">
                                 <a href="{{ route('user.students.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Students List') }}</p>
                                 </a>
                             </li>
-                        @endif
-                        @if (hasRole(['School Admin', 'Teachers']))
+                        @endcan
+                        @can('attendance_access')
                             <li class="nav-item">
                                 <a href="{{ route('user.attendances.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Attendance Lists') }}</p>
                                 </a>
                             </li>
-                        @endif
-                        @if (hasRole(['School Admin', 'Teachers']))
+                        @endcan
+                        @can('attendance_crud_access')
                             <li class="nav-item">
                                 <a href="{{ route('user.attendances.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>{{ __('Add/Edit Attendance') }}</p>
                                 </a>
                             </li>
-                        @endif
+                        @endcan
                     </ul>
                 </li>
             @endif

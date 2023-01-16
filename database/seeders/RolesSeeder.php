@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolesSeeder extends Seeder
 {
@@ -14,24 +15,38 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        // $permissions = [
-        //     ['name' => 'dasboard_access'],
-        //     ['name' => 'users_access'],
-        //     ['name' => 'school_details_access'],
-        //     ['name' => 'school_details_edit_access'],
-        //     ['name' => 'classrooms_access'],
-        //     ['name' => 'classrooms_crud_access'],
-        //     ['name' => 'sections_access'],
-        //     ['name' => 'sections_crud_access'],
-        //     ['name' => 'exams_access'],
-        //     ['name' => 'exams_crud_access'],
-        //     ['name' => 'grades_access'],
-        //     ['name' => 'grades_crud_access'],
-        //     ['name' => 'marks_access'],
-        //     ['name' => 'marks_crud_access'],
-        //     ['name' => 'marksheet_access'],
-        //     ['name' => 'admit_students'],
-        //     ['name' => 'admit_students'],
-        // ];
+        $permissions = [
+            ['name' => 'dasboard_access', 'guard_name' => 'web'],
+            ['name' => 'users_access', 'guard_name' => 'web'],
+            ['name' => 'school_details_access', 'guard_name' => 'web'],
+            ['name' => 'school_details_edit_access', 'guard_name' => 'web'],
+            ['name' => 'classrooms_access', 'guard_name' => 'web'],
+            ['name' => 'classrooms_crud_access', 'guard_name' => 'web'],
+            ['name' => 'sections_access', 'guard_name' => 'web'],
+            ['name' => 'subjects_access', 'guard_name' => 'web'],
+            ['name' => 'subjects_crud_access', 'guard_name' => 'web'],
+            ['name' => 'sections_crud_access', 'guard_name' => 'web'],
+            ['name' => 'exams_access', 'guard_name' => 'web'],
+            ['name' => 'exams_crud_access', 'guard_name' => 'web'],
+            ['name' => 'grades_access', 'guard_name' => 'web'],
+            ['name' => 'grades_crud_access', 'guard_name' => 'web'],
+            ['name' => 'marks_access', 'guard_name' => 'web'],
+            ['name' => 'marks_crud_access', 'guard_name' => 'web'],
+            ['name' => 'marksheet_access', 'guard_name' => 'web'],
+            ['name' => 'routine_access', 'guard_name' => 'web'],
+            ['name' => 'students_access', 'guard_name' => 'web'],
+            ['name' => 'students_admit_access', 'guard_name' => 'web'],
+            ['name' => 'attendance_access', 'guard_name' => 'web'],
+            ['name' => 'attendance_crud_access', 'guard_name' => 'web'],
+            ['name' => 'fee_management_access', 'guard_name' => 'web'],
+            ['name' => 'fee_management_pay_access', 'guard_name' => 'web']
+        ];
+        Permission::insert($permissions);
+
+        $schoolAdmin = Role::create([
+            'name' => 'School Admin',
+        ]);
+
+        $schoolAdmin->permissions()->sync(collect(Permission::all())->map->id->toArray());
     }
 }
