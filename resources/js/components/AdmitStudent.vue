@@ -27,6 +27,7 @@ export default {
                 is_tution_fee:0,
                 pickup_point:'',
                 is_food_fee:0,
+                // doc:'',
             },
             section:'',
             classroom:'',

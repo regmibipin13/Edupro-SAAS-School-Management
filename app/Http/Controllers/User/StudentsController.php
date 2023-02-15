@@ -67,6 +67,17 @@ class StudentsController extends Controller
         return response()->json(['status' => 'success', 'redirect' => redirect()->back()]);
     }
 
+    public function uploadDocs(Student $student, Request $request)
+    {
+        $request->validate([
+            'doc' => 'required',
+        ]);
+        $student->clearMediaCollection();
+
+        $student->addMedia($request->doc)->toMediaCollection();
+        return redirect()->back()->with('success', 'Doc Updated');
+    }
+
     /**
      * Display the specified resource.
      *

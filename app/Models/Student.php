@@ -6,9 +6,12 @@ use App\Traits\Filterable;
 use App\Traits\SchoolMultitenancy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Student extends Model
+class Student extends Model implements HasMedia
 {
+    use InteractsWithMedia;
     use HasFactory;
     use SchoolMultitenancy;
     use Filterable;
@@ -58,7 +61,8 @@ class Student extends Model
         return $this->hasMany(Attendance::class);
     }
 
-    public function fee_payments() {
+    public function fee_payments()
+    {
         return $this->hasMany(FeePayment::class);
     }
 

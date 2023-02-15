@@ -382,6 +382,8 @@ namespace App\Models{
  * @property-read mixed $total_marks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Mark[] $marks
  * @property-read int|null $marks_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
  * @property-read \App\Models\User $parent
  * @property-read \App\Models\School $school
  * @property-read \App\Models\Section $section
@@ -407,7 +409,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereUserId($value)
  */
-	class Student extends \Eloquent {}
+	class Student extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{

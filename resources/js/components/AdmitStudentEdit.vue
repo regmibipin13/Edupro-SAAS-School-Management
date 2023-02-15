@@ -27,6 +27,7 @@ export default {
                 is_tution_fee:0,
                 pickup_point:'',
                 is_food_fee:0,
+                doc:'',
             },
             section:'',
             classroom:'',
@@ -91,6 +92,7 @@ export default {
             this.form.is_transportation_fee = this.student.is_transportation_fee;
             this.form.is_food_fee = this.student.is_food_fee;
             this.form.is_tution_fee = this.student.is_tution_fee;
+            // this.form.doc = this.student.doc;
             this.form.pickup_point = this.student.pickup_point;
             this.classroom = this.student.classroom;
             this.section = this.student.section;

@@ -95,6 +95,7 @@ Route::group(['as' => 'user.', 'middleware' => ['auth']], function () {
     Route::resource('exams', ExamController::class);
 
     // Students
+    Route::post('students/{student}/doc', [StudentsController::class, 'uploadDocs'])->name('students.uploadDoc');
     Route::resource('students', StudentsController::class);
 
     //Grades

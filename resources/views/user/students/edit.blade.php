@@ -215,6 +215,29 @@
                     </div>
                 </div>
             </form>
+
+
+            <form action="{{ route('user.students.uploadDoc', $student->id) }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="card">
+                    <div class="card-header">
+                        Upload Scanned Document
+                    </div>
+
+                    <div class="card-body">
+                        @if ($student->hasMedia())
+                            <a href="{{ $student->getFirstMediaUrl() }}">View Docs</a>
+                        @endif
+
+                        <input type="file" class="form-control" name="doc">
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success">Upload Doc</button>
+                    </div>
+                </div>
+            </form>
         </div>
         </admit-student>
     @endsection
